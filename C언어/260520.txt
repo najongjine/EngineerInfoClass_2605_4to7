@@ -8,7 +8,7 @@ int main() {
 	float f1 = 1; // 실수를 저장
 	char c1 = 'A';
 	// %f 요놈은 내가 지정한 데이터 엮어서 보여야되
-	printf("f1는 %f \n",f1);
+	printf("f1는 %.2f \n",f1);
 	printf("c1: %c \n",c1);
 
 	/* return main 함수 빠져 나오고, 0이라는 데이터 퉤 뱉어 */
