@@ -54,11 +54,13 @@ int main() {
 	/* 나누기에서 소수점까지 나 나오게 고치기 */
 	// 방법1 := 강제 캐스팅
 	float c2 = (float)a / b;
+	printf("a(%f) / b(%d) = c2(%f) \n", (float)a, b, c2);
 
 	// 방법2 := float 으로 타입 선언하기
 
 	float a2 = 1;
 	c2 = a2 / b;
+	printf("a2(%f) / b(%d) = c2(%f) \n", a2, b, c2);
 
 	/* 핵심은 c언어랑 JAVA는 나누기할때, 데이터중 단 하나라도
 	소수점이 들어가면 소수점을 남긴다.
