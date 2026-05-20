@@ -98,10 +98,36 @@ int main() {
 	a += 1; // 동일해요
 	/* a += 1;
 	a 라는놈한테 1을 누적시켜라 */
+	a=1;
+	a *= 2; // a= a*2; == a= 1 * 2
+	a /= 2; // a= a/2; == a= 2 / 2
+	a %= 2; // a= a%2; == a= 1 % 2
 
-	a *= 2; // a= a*2;
-	a /= 2; // a= a/2;
-	a %= 2; // a= a%2;
+	return 0;
+}
+
+
+------------------------------
+
+
+
+
+#include <stdio.h>
+
+int main() {
+	int a = 1;
+	int b = 2;
+	int c,d,e;
+
+	c = a + b;
+	d = a - b;
+	e = a * b;
+
+	printf("c=%d, d=%d, e=%d \n",c,d,e);
+
+	c = a / b;
+	d = a % b;
+	printf("c=%d, d=%d \n",c,d);
 
 	return 0;
 }
