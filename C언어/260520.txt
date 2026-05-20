@@ -111,23 +111,17 @@ int main() {
 
 
 
-
 #include <stdio.h>
 
 int main() {
 	int a = 1;
-	int b = 2;
-	int c,d,e;
-
-	c = a + b;
-	d = a - b;
-	e = a * b;
-
-	printf("c=%d, d=%d, e=%d \n",c,d,e);
-
-	c = a / b;
-	d = a % b;
-	printf("c=%d, d=%d \n",c,d);
+	/* 이거 a 라는 변수에 저장하는거 아니에요 
+	a 메모리에 1 있고, 고대로 있어요.
+	왜냐면 a=a+1 이 아니기 때문이에요 
+	컴퓨터는 바보라서 저장하는것도 일일히 사람이 지정 해줘야되요 */
+	a + 1;
+	printf("a:%d \n", a); //1
 
 	return 0;
 }
+
