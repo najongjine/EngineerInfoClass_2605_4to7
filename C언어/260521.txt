@@ -112,3 +112,23 @@ int main() {
     
     return 0;
 }
+
+------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int n1 = 1; 
+    if (n1) {
+        int n2 = 1; 
+        
+    }
+
+    /* 이건 main scope 입장에서 n2가 없어서 그래요
+    } 기호는 scope가 끝났단 소리에요. scope 가 끝나면 
+    메모리에서 그 scope 에 있는 모든거 지워 버려요 */
+    printf("%d \n", n2);
+    
+    
+    return 0;
+}
