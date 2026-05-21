@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main() {
+    int score = 60;
+    if (score != 60) { // if(false)
+        printf("같다!"); // false 면 안함
+    }
+    printf("나는 if문 다음줄에 있어요!"); // 이건 해야됨
+    return 0;
+}
