@@ -26,3 +26,21 @@ int main() {
     printf("나는 if문 다음줄에 있어요!"); 
     return 0;
 }
+
+
+----------------------------
+
+#include <stdio.h>
+
+int main() {
+    int n1 = 10;
+    if (n1 % 2==0) {
+        printf("짝수입니다");
+    }
+    else {
+        printf("홀수 입니다");
+    }
+    
+    
+    return 0;
+}
