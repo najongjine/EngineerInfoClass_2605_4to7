@@ -95,3 +95,20 @@ int main() {
     
     return 0;
 }
+
+-----------------
+
+#include <stdio.h>
+
+int main() {
+    int n1 = 1; // 이건 main scope에 있는 n1
+    if (n1) {
+        /* 이건 main.if 에 scope 있는 n1 이다 */
+        int n1 = 1; 
+        n1++;
+    }
+    printf("%d \n", n1);
+    
+    
+    return 0;
+}
