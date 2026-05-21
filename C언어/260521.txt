@@ -8,3 +8,21 @@ int main() {
     printf("나는 if문 다음줄에 있어요!"); // 이건 해야됨
     return 0;
 }
+
+--------------------------
+
+#include <stdio.h>
+
+int main() {
+    int score = 50;
+    if (50 >= 60) {
+        printf("합격\n"); 
+    }
+    else  { 
+        /* else 는 if문이 false면 실행되는 놈이에요
+        단독으로는 못쓰고 if문이랑 같이 써야되요 */
+        printf("불합격 \n");
+    }
+    printf("나는 if문 다음줄에 있어요!"); 
+    return 0;
+}
