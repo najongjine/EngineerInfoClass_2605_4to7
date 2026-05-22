@@ -92,3 +92,21 @@ int main() {
     
     return 0;
 }
+
+------------------------------
+
+#include <stdio.h>
+
+int main() {
+
+    for (int a = 1; a < 999; a++) {
+        if (a % 2 == 0) {
+            /* a++ 하는곳으로 강제로 점프해라. 
+            밑에꺼는 무시. */
+            continue;
+        }
+        printf("a:%d \n", a);
+    }
+    
+    return 0;
+}
