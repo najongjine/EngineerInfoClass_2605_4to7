@@ -36,3 +36,18 @@ int main() {
     printf("최후의 i값: %d \n", i);
     return 0;
 }
+
+-----------------------
+
+#include <stdio.h>
+
+int main() {
+    for (;0;) {
+
+    }
+    int i = 0;
+    while (i++ < 2) {
+        printf("%d \n", i);
+    }
+    return 0;
+}
