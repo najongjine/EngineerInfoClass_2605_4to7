@@ -21,7 +21,12 @@ int main() {
 
 int main() {
     int i = 0;
+    int sum = 0;
 
+    /* forloop 에서 변수 선언하면 되게 조심해야 되요
+    매 회차때마다(forloop 안에있는 연산식 수행후)
+    block 안에있는 변수들 싹 지워요. 그리고 다시시작해요
+    */
     for (; i< 5 ;i++) {
         int sum = 0;
         sum += i;
