@@ -70,3 +70,23 @@ int main() {
    
     return 0;
 }
+
+--------------------------
+
+#include <stdio.h>
+
+int main() {
+    /* 반복문이 중첩이 되있을땐 굉장히 어려워요
+    * 노가다 양이 기하급수적이 되거든요.
+    * 자식 forloop를 만나면, 그놈이 다 끝나기 전까진 부모
+    * forloop의 i++을 가지 않아요
+    */
+    for (int a = 0; a < 3;a++) {
+        printf("a:%d \n",a);
+        for (int b = 0; b < 2;b++) {
+            printf("b:%d \n", b);
+        }
+    }
+    
+    return 0;
+}
