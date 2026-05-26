@@ -37,3 +37,16 @@ int main() {
 
     return 0;
 }
+
+-------------------
+
+#include <stdio.h>
+
+int main() {
+    int nums[300] = {1,2,3};
+    /* 반복문을 사용하면, 배열크기가 아무리 커져도 100% 다 접근가능해요*/
+    for (int i = 0; i < 300;i++) {
+        printf("nums[%d] == %d \n", i, nums[i]);
+    }
+    return 0;
+}
