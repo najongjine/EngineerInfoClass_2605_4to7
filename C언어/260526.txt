@@ -100,7 +100,31 @@ int main() {
         }
     }
 
-    
+    return 0;
+}
 
+---------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    /* 문자열의 비밀 */
+    char c1 = 'H';
+    char str1[1000] = "hello";
+    printf("c1: %c \n", c1);
+    printf("str1: %p \n", str1);
+    for (int i = 0; str1[i] != '\0'; i++) {
+        printf("%c", str1[i]);
+    }
+
+    /* %s := string의 약자.
+    컴퓨터 입장에선 문자열은 긴 실과 같아요. 
+    문자열 데이터 하나 나올때마다 반복문 쓰면 사람 죽어나니깐
+    문자들이 heap 영역에 배치된건, %s, 변수명으로 편하게 쓸수있게 해줬다*/
+    printf("\n c언어의 최초 편의성 패치: %s \n", str1);
+
+    /* int 같은 숫자 데이터들을 %s로 출력하면 데이터 박살나요. */
+    int nums[3] = { 3,2,'\0'};
+    printf("\n nums: %s \n", nums);
     return 0;
 }
