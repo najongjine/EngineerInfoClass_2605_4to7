@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>정보처리기사 실기 2주차 5일차 | C 구조체와 자료 결합</title>
+  <style>
+    :root {
+      --ink: #152537;
+      --muted: #5d6d78;
+      --navy: #183951;
+      --teal: #08796d;
+      --teal-deep: #065f57;
+      --orange: #c85829;
+      --purple: #6746ba;
+      --paper: #f7fafb;
+      --panel: #fff;
+      --line: #d5e1e6;
+      --mint: #dff6ef;
+      --aqua: #e3f3fc;
+      --yellow: #fff3c9;
+      --rose: #ffe8e3;
+      --lilac: #eee9ff;
+      --code: #102031;
+      --code-line: #284052;
+      --shadow: 0 12px 32px rgba(18, 40, 55, .08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(24, 57, 81, .035) 1px, transparent 1px),
+        linear-gradient(rgba(24, 57, 81, .035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 28px 28px;
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif;
+      line-height: 1.72;
+      word-break: keep-all;
+    }
+
+    header {
+      padding: 57px 20px 48px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 84% 20%, rgba(255, 207, 120, .25), transparent 27%),
+        linear-gradient(128deg, #122d45, #07685f 58%, #198478);
+    }
+
+    .wrap {
+      width: min(1140px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 13px;
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      color: #ddfbf5;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 940px;
+      margin: 0;
+      font-size: clamp(32px, 4.7vw, 53px);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      max-width: 910px;
+      margin: 18px 0 0;
+      color: #edf9f7;
+      font-size: 18px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    nav a {
+      flex: 0 0 auto;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--navy);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: var(--teal);
+    }
+
+    main { padding: 30px 0 74px; }
+
+    section {
+      margin: 28px 0;
+      padding: clamp(20px, 3.2vw, 31px);
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: rgba(255,255,255,.94);
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      color: #16364e;
+      font-size: clamp(25px, 3vw, 30px);
+      line-height: 1.35;
+    }
+
+    h3 {
+      margin: 27px 0 12px;
+      color: var(--teal-deep);
+      font-size: 21px;
+    }
+
+    h4 {
+      margin: 18px 0 9px;
+      color: var(--navy);
+      font-size: 17px;
+    }
+
+    p { margin: 10px 0; }
+    ul, ol { margin: 10px 0; padding-left: 23px; }
+    li { margin: 5px 0; }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: #123d50;
+      background: #ebf3f6;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: .95em;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 13px 0;
+      padding: 18px 20px;
+      border-radius: 13px;
+      color: #eef6fb;
+      background: var(--code);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    pre code {
+      padding: 0;
+      color: inherit;
+      background: transparent;
+      font-size: inherit;
+    }
+
+    .grid-2, .grid-3, .schedule, .quiz-grid, .coupling-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2, .coupling-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .schedule { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .quiz-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card, .box, .time, .problem {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: #fff;
+    }
+
+    .time strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--teal-deep);
+      font-size: 17px;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 7px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      color: var(--teal-deep);
+      background: var(--mint);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .callout {
+      margin: 16px 0;
+      padding: 15px 17px;
+      border-left: 5px solid var(--teal);
+      border-radius: 0 12px 12px 0;
+      background: var(--mint);
+    }
+
+    .warning {
+      border-left-color: var(--orange);
+      background: var(--rose);
+    }
+
+    .exam {
+      border-left-color: var(--purple);
+      background: var(--lilac);
+    }
+
+    .keyword {
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: var(--aqua);
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      margin: 14px 0;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th, td {
+      padding: 10px 11px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #123a50;
+      background: #eef6f8;
+    }
+
+    .visual {
+      margin: 18px 0;
+      padding: clamp(15px, 2.8vw, 23px);
+      border: 1px dashed #b5cbd1;
+      border-radius: 15px;
+      background: #fbfefe;
+    }
+
+    .loose, .record, .record-array, .address-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .cell {
+      min-width: 118px;
+      padding: 10px;
+      border: 2px solid #96cfc7;
+      border-radius: 9px;
+      background: var(--mint);
+      text-align: center;
+    }
+
+    .cell small, .field small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .cell strong, .field strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .brace {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--orange);
+      font-size: 38px;
+      font-weight: 700;
+    }
+
+    .struct-card {
+      flex: 1 1 430px;
+      overflow: hidden;
+      border: 2px solid var(--teal);
+      border-radius: 13px;
+      background: #fff;
+    }
+
+    .struct-title {
+      padding: 7px 12px;
+      color: #fff;
+      background: var(--teal);
+      font-weight: 700;
+    }
+
+    .fields {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .field {
+      flex: 1 1 105px;
+      min-height: 76px;
+      padding: 9px;
+      border-right: 1px solid #d2e8e3;
+      background: #f0faf6;
+      text-align: center;
+    }
+
+    .field:last-child { border-right: 0; }
+
+    .arrow {
+      align-self: center;
+      color: var(--orange);
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .tiny-record {
+      flex: 1 1 235px;
+      overflow: hidden;
+      border: 2px solid #91c9bf;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .tiny-record b {
+      display: block;
+      padding: 5px 10px;
+      color: #fff;
+      background: #158378;
+    }
+
+    .tiny-fields {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .8fr;
+    }
+
+    .tiny-fields span {
+      padding: 8px 7px;
+      border-right: 1px solid var(--line);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .tiny-fields span:last-child { border: 0; }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
+    .node {
+      min-width: 140px;
+      padding: 12px;
+      border: 1px solid #b8d1d8;
+      border-radius: 11px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .node.good { border-color: #66bdab; background: var(--mint); }
+    .node.mid { border-color: #e2ba62; background: var(--yellow); }
+    .node.bad { border-color: #ee9d8f; background: var(--rose); }
+
+    .coupling-scale {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(86px, 1fr));
+      gap: 7px;
+      margin-top: 17px;
+    }
+
+    .scale-step {
+      padding: 11px 6px;
+      border-radius: 9px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .scale-step:nth-child(1) { background: #c9f2e7; }
+    .scale-step:nth-child(2) { background: #e6f3d1; }
+    .scale-step:nth-child(3) { background: #fff2c7; }
+    .scale-step:nth-child(4) { background: #ffe3c9; }
+    .scale-step:nth-child(5) { background: #ffded4; }
+    .scale-step:nth-child(6) { background: #ffd1cf; }
+
+    .trace th:not(:first-child), .trace td:not(:first-child) {
+      text-align: center;
+    }
+
+    .steps {
+      counter-reset: practice;
+      list-style: none;
+      padding: 0;
+    }
+
+    .steps li {
+      position: relative;
+      margin: 11px 0;
+      padding: 12px 13px 12px 51px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+    }
+
+    .steps li::before {
+      counter-increment: practice;
+      content: counter(practice);
+      position: absolute;
+      left: 13px;
+      top: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--teal);
+      text-align: center;
+      font-weight: 700;
+      line-height: 26px;
+    }
+
+    details {
+      margin: 12px 0;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+    }
+
+    summary {
+      padding: 11px 14px;
+      color: var(--teal-deep);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    details > div {
+      padding: 0 15px 14px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .answer {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    .problem h4 { margin-top: 0; }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      position: relative;
+      margin: 8px 0;
+      padding: 10px 12px 10px 39px;
+      border-radius: 10px;
+      background: #f4fafb;
+    }
+
+    .checklist li::before {
+      content: "□";
+      position: absolute;
+      left: 14px;
+      top: 9px;
+      color: var(--teal);
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 29px 20px 40px;
+      color: #e7f5f4;
+      background: #123044;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .schedule, .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .coupling-scale { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 690px) {
+      header { padding-top: 40px; }
+      .grid-2, .grid-3, .schedule, .quiz-grid, .coupling-grid { grid-template-columns: 1fr; }
+      section { margin: 19px 0; }
+      th, td { padding: 8px 7px; font-size: 13px; }
+      .field { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">정보처리기사 실기 · 2주차 C언어 · 5일차 · 3시간</p>
+      <h1>흩어진 데이터를 한 사람으로 묶기: C 구조체와 구조체 배열</h1>
+      <p class="subtitle">오늘 결석했더라도 이 문서만 따라오면 <code>struct</code> 선언, 멤버 접근, 배열 처리, 시험형 코드 추적을 직접 연습할 수 있습니다. 동시에 "자료를 묶는 것"과 "자료 결합도" 용어의 정확한 관계도 정리합니다.</p>
+    </div>
+  </header>
+
+  <nav aria-label="학습 목차">
+    <div class="wrap nav-inner">
+      <a href="#guide">수업 안내</a>
+      <a href="#why">왜 구조체인가</a>
+      <a href="#syntax">선언 문법</a>
+      <a href="#array">구조체 배열</a>
+      <a href="#coupling">자료 결합도</a>
+      <a href="#lab">코딩 실습</a>
+      <a href="#exam">실기형 문제</a>
+      <a href="#self">자율 복습</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="guide">
+      <h2>1. 오늘 수업 안내</h2>
+      <p>지난 시간까지 배열, 함수, 포인터, 문자열을 공부했습니다. 이제 이름, 점수, 등급처럼 <strong>자료형은 서로 다르지만 한 대상에 속하는 값들</strong>을 함께 다루는 방법을 배웁니다. 이것이 구조체입니다.</p>
+
+      <div class="schedule">
+        <article class="time">
+          <strong>0:00 - 0:25</strong>
+          <span class="badge">도입</span>
+          <p>흩어진 변수의 문제, 구조체가 필요한 이유, 메모리 그림 읽기</p>
+        </article>
+        <article class="time">
+          <strong>0:25 - 1:10</strong>
+          <span class="badge">이론 + 따라쓰기</span>
+          <p><code>struct</code>, <code>.</code>, 초기화, <code>typedef</code>, 문자열 멤버</p>
+        </article>
+        <article class="time">
+          <strong>1:10 - 2:00</strong>
+          <span class="badge">코딩 실습</span>
+          <p>구조체 배열 순회, 최고점 찾기, 함수와 포인터로 수정하기</p>
+        </article>
+        <article class="time">
+          <strong>2:00 - 3:00</strong>
+          <span class="badge">시험 대비</span>
+          <p>자료 결합도 구분, 출력 추적 문제, 변형 문제와 오답 확인</p>
+        </article>
+      </div>
+
+      <h3>학습 목표</h3>
+      <div class="grid-3">
+        <div class="keyword">하나의 대상에 속한 여러 값을 왜 구조체로 묶는지 설명한다.</div>
+        <div class="keyword"><code>s.score</code>, <code>p-&gt;score</code>, <code>arr[i].score</code>를 읽고 쓴다.</div>
+        <div class="keyword">구조체 배열과 반복문이 섞인 출력 문제를 손으로 추적한다.</div>
+      </div>
+
+      <h3>혼자 실행할 때의 준비</h3>
+      <div class="grid-2">
+        <div class="box">
+          <span class="badge">작성</span>
+          <p>예제 코드를 <code>struct_day5.c</code>처럼 확장자가 <code>.c</code>인 파일에 입력합니다. 한글 이름 대신 예제처럼 영문 문자열을 쓰면 환경 차이로 인한 출력 깨짐을 줄일 수 있습니다.</p>
+        </div>
+        <div class="box">
+          <span class="badge">실행</span>
+          <p>GCC가 설치된 터미널이라면 아래처럼 컴파일하고 실행합니다. 오류가 나면 오류가 가리킨 줄의 세미콜론, 점/화살표부터 점검합니다.</p>
+          <pre><code>gcc struct_day5.c -o struct_day5
+./struct_day5</code></pre>
+        </div>
+      </div>
+
+      <div class="callout exam">
+        <strong>시험을 보는 눈:</strong> 실기에서는 "구조체를 설계하시오"보다 이미 주어진 코드에서 멤버값이 언제 바뀌고, 배열을 순회하면서 어떤 출력이 생기는지 묻는 형태에 대비해야 합니다. 따라서 오늘도 매 코드마다 예상 → 변화표 → 실행 → 변형 순서로 갑니다.
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>2. 구조체는 왜 필요할까?</h2>
+      <h3>2-1. 구조체가 없을 때: 값은 있지만 관계가 보이지 않는다</h3>
+      <p>학생 한 명을 저장하려고 합니다. 이름은 문자열, 점수는 정수, 등급은 문자입니다. 각각 변수로 만들 수는 있지만, 학생이 늘어나면 같은 학생의 값끼리 연결해 관리하는 일이 급격히 어려워집니다.</p>
+
+      <div class="visual">
+        <p><strong>흩어진 변수 방식</strong> - 변수 이름의 규칙으로만 "김민지의 정보"임을 억지로 표시합니다.</p>
+        <div class="loose" aria-label="분리된 변수 시각화">
+          <div class="cell"><small>char name1[]</small><strong>김민지</strong></div>
+          <div class="cell"><small>int score1</small><strong>87</strong></div>
+          <div class="cell"><small>char grade1</small><strong>B</strong></div>
+          <div class="cell"><small>char name2[]</small><strong>박지훈</strong></div>
+          <div class="cell"><small>int score2</small><strong>94</strong></div>
+          <div class="cell"><small>char grade2</small><strong>A</strong></div>
+        </div>
+      </div>
+
+      <pre><code>char name1[20] = "Minji";
+int score1 = 87;
+char grade1 = 'B';
+
+char name2[20] = "Jihun";
+int score2 = 94;
+char grade2 = 'A';</code></pre>
+
+      <p>이 방식은 학생 한 명의 값을 함수로 보내거나 배열로 정렬할 때 특히 불편합니다. 이름 배열과 점수 배열의 인덱스가 어긋나면 "이름은 민지인데 점수는 지훈"인 오류가 생깁니다.</p>
+
+      <h3>2-2. 구조체가 있을 때: 한 대상을 한 묶음으로 표현한다</h3>
+      <div class="visual">
+        <p><strong>구조체 방식</strong> - 서로 다른 자료형의 값을 <code>Student</code>라는 한 기록(record)으로 묶습니다.</p>
+        <div class="flow">
+          <div class="cell"><small>이름</small><strong>Minji</strong></div>
+          <div class="cell"><small>점수</small><strong>87</strong></div>
+          <div class="cell"><small>등급</small><strong>B</strong></div>
+          <div class="arrow">→</div>
+          <div class="struct-card">
+            <div class="struct-title">struct Student minji</div>
+            <div class="fields">
+              <div class="field"><small>name</small><strong>Minji</strong></div>
+              <div class="field"><small>score</small><strong>87</strong></div>
+              <div class="field"><small>grade</small><strong>B</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="box">
+          <span class="badge">배열과의 차이</span>
+          <p>배열은 보통 <strong>같은 자료형의 여러 값</strong>입니다. 예: <code>int scores[3]</code>.</p>
+        </div>
+        <div class="box">
+          <span class="badge">구조체의 역할</span>
+          <p>구조체는 <strong>한 대상의 서로 다른 성격의 값</strong>을 묶습니다. 예: 이름 + 점수 + 등급.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>한 줄 정의:</strong> 구조체(<code>struct</code>)는 관련 있는 여러 값을 하나의 사용자 정의 자료형으로 묶어, 현실의 한 대상처럼 다룰 수 있게 하는 C언어 문법입니다.
+      </div>
+    </section>
+
+    <section id="syntax">
+      <h2>3. 구조체 선언과 멤버 접근</h2>
+      <h3>3-1. 틀을 만들고, 실제 변수를 만든다</h3>
+      <p><code>struct Student</code>는 아직 학생 한 명의 값이 아니라, "학생 정보는 이렇게 생겼다"라는 <strong>설계도(자료형)</strong>입니다. 설계도 뒤에 <code>s1</code>을 선언해야 실제 저장 공간이 생깁니다.</p>
+
+      <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct Student {
+    char name[20];
+    int score;
+    char grade;
+};
+
+int main(void) {
+    struct Student s1;
+
+    strcpy(s1.name, "Minji");
+    s1.score = 87;
+    s1.grade = 'B';
+
+    printf("%s %d %c\n", s1.name, s1.score, s1.grade);
+    return 0;
+}</code></pre>
+
+      <table>
+        <thead>
+          <tr><th>코드</th><th>읽는 방법</th><th>결과</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>struct Student { ... };</code></td><td>Student 형태를 정의한다</td><td>틀만 만들어진다</td></tr>
+          <tr><td><code>struct Student s1;</code></td><td>Student형 변수 s1을 만든다</td><td>실제 저장 칸이 생긴다</td></tr>
+          <tr><td><code>s1.score = 87;</code></td><td>s1의 score 멤버에 87 저장</td><td>점 연산자 <code>.</code> 사용</td></tr>
+          <tr><td><code>strcpy(s1.name, "Minji");</code></td><td>s1의 문자 배열에 문자열 복사</td><td>문자열 배열은 통째 대입 불가</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warning">
+        <strong>초보자가 자주 틀리는 부분:</strong> <code>s1.name = "Minji";</code>는 배열 멤버에 나중에 문자열을 대입하려는 코드이므로 허용되지 않습니다. 선언과 동시에 초기화하거나, 이미 만든 뒤에는 <code>strcpy</code>를 사용합니다.
+      </div>
+
+      <h3>3-2. 선언과 동시에 초기화하기</h3>
+      <pre><code>struct Student s1 = {"Minji", 87, 'B'};
+struct Student s2 = {"Jihun", 94, 'A'};
+
+printf("%d\n", s1.score + s2.score);  // 181</code></pre>
+      <p>중괄호의 값은 구조체에 적힌 멤버 순서대로 들어갑니다. 이름 → 점수 → 등급 순서를 바꾸면 의도한 자료가 되지 않습니다.</p>
+
+      <h3>3-3. <code>typedef</code>로 자료형 이름을 짧게 만들기</h3>
+      <p>시험 코드에서는 <code>typedef</code>가 함께 나오는 일이 많습니다. 복잡한 새 기능이 아니라, 긴 이름의 별명을 만드는 문법으로 읽으면 됩니다.</p>
+      <pre><code>typedef struct {
+    char name[20];
+    int score;
+    char grade;
+} Student;
+
+int main(void) {
+    Student a = {"Ara", 80, 'B'};
+    printf("%s:%d\n", a.name, a.score);
+    return 0;
+}</code></pre>
+
+      <div class="grid-2">
+        <div class="box">
+          <h4><code>struct Student s;</code></h4>
+          <p>구조체 태그 이름 앞에 매번 <code>struct</code>를 적는 방식입니다.</p>
+        </div>
+        <div class="box">
+          <h4><code>Student s;</code></h4>
+          <p><code>typedef</code>로 <code>Student</code>를 새 자료형 이름처럼 쓰는 방식입니다.</p>
+        </div>
+      </div>
+
+      <h3>3-4. 점(<code>.</code>)과 화살표(<code>-&gt;</code>)를 구별한다</h3>
+      <p>구조체 변수 자체를 들고 있으면 점을 씁니다. 구조체의 주소를 저장한 포인터가 있으면 화살표를 씁니다. 지난 시간의 포인터가 오늘 구조체와 연결되는 지점입니다.</p>
+      <div class="visual">
+        <div class="flow">
+          <div class="node good"><code>s.score</code><br>상자 자체로 접근</div>
+          <div class="node">Student s</div>
+          <div class="arrow">|</div>
+          <div class="node mid">Student *p = &amp;s</div>
+          <div class="node good"><code>p-&gt;score</code><br>주소로 접근</div>
+        </div>
+        <p><strong>같은 칸을 가리키는 표현:</strong> <code>p-&gt;score</code>는 <code>(*p).score</code>와 같습니다. 괄호가 필요한 이유는 <code>.</code>의 계산 우선순위가 <code>*</code>보다 높기 때문입니다.</p>
+      </div>
+
+      <pre><code>Student s = {"Yuna", 70, 'C'};
+Student *p = &amp;s;
+
+p-&gt;score += 15;
+p-&gt;grade = 'B';
+
+printf("%d %c\n", s.score, s.grade);  // 85 B</code></pre>
+    </section>
+
+    <section id="array">
+      <h2>4. 구조체 배열: 여러 대상을 같은 규칙으로 관리한다</h2>
+      <p>학생 한 명은 구조체 변수 하나로 충분합니다. 학생 세 명을 같은 방식으로 저장하려면 <strong>구조체를 원소로 갖는 배열</strong>을 만듭니다. 배열이므로 <code>[i]</code>로 한 학생을 고르고, 점 연산자로 그 학생의 멤버를 고릅니다.</p>
+
+      <div class="visual">
+        <p><strong><code>Student list[3]</code>의 모습</strong></p>
+        <div class="record-array" aria-label="구조체 배열 시각화">
+          <div class="tiny-record">
+            <b>list[0]</b>
+            <div class="tiny-fields"><span>Ara</span><span>78</span><span>C</span></div>
+          </div>
+          <div class="tiny-record">
+            <b>list[1]</b>
+            <div class="tiny-fields"><span>Bora</span><span>91</span><span>A</span></div>
+          </div>
+          <div class="tiny-record">
+            <b>list[2]</b>
+            <div class="tiny-fields"><span>Chan</span><span>84</span><span>B</span></div>
+          </div>
+        </div>
+        <p><code>list[1]</code>은 두 번째 학생 전체, <code>list[1].score</code>는 그 학생 안의 점수 <strong>91</strong>입니다.</p>
+      </div>
+
+      <pre><code>typedef struct {
+    char name[20];
+    int score;
+    char grade;
+} Student;
+
+int main(void) {
+    Student list[3] = {
+        {"Ara", 78, 'C'},
+        {"Bora", 91, 'A'},
+        {"Chan", 84, 'B'}
+    };
+    int i, sum = 0;
+
+    for (i = 0; i &lt; 3; i++) {
+        sum += list[i].score;
+        printf("%s:%d\n", list[i].name, list[i].score);
+    }
+    printf("avg=%d\n", sum / 3);
+    return 0;
+}</code></pre>
+
+      <table class="trace">
+        <thead>
+          <tr><th>반복</th><th><code>i</code></th><th><code>list[i].score</code></th><th>계산 전 <code>sum</code></th><th>계산 후 <code>sum</code></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1회차</td><td>0</td><td>78</td><td>0</td><td>78</td></tr>
+          <tr><td>2회차</td><td>1</td><td>91</td><td>78</td><td>169</td></tr>
+          <tr><td>3회차</td><td>2</td><td>84</td><td>169</td><td>253</td></tr>
+        </tbody>
+      </table>
+      <p>정수끼리 나누므로 평균 출력은 <code>253 / 3</code>의 정수 몫인 <strong>84</strong>입니다. 구조체 문제 안에서도 기존에 배운 정수 나눗셈 규칙은 그대로 적용됩니다.</p>
+
+      <h3>최고점 학생 찾기의 흐름</h3>
+      <pre><code>int top = 0;
+for (int i = 1; i &lt; 3; i++) {
+    if (list[i].score &gt; list[top].score) {
+        top = i;
+    }
+}
+printf("%s\n", list[top].name);</code></pre>
+      <p><code>top</code>에는 최고 점수 자체가 아니라 <strong>최고 학생의 위치(인덱스)</strong>가 저장됩니다. 이름도 점수도 같은 학생에게서 꺼내기 위해 위치를 기억하는 것입니다.</p>
+    </section>
+
+    <section id="coupling">
+      <h2>5. 구조체와 "자료 결합도"를 정확히 이해하기</h2>
+      <p>여기서 용어가 헷갈리기 쉽습니다. 구조체는 여러 자료를 한 대상의 기록으로 묶는 <strong>C언어의 자료형 기능</strong>입니다. 반면 결합도(coupling)는 <strong>모듈이나 함수가 서로 얼마나 강하게 의존하는지</strong>를 설명하는 설계 개념입니다.</p>
+
+      <div class="callout warning">
+        <strong>중요한 용어 교정:</strong> 구조체 전체를 함수에 넘겼다고 해서 곧바로 "자료 결합도(data coupling)"라고 부르지는 않습니다. 필요한 단순 값만 전달하면 <strong>자료 결합도</strong>, 여러 멤버를 가진 구조체처럼 자료구조 전체를 전달하면 보통 <strong>스탬프 결합도(stamp coupling, 자료구조 결합도)</strong>라고 구분합니다.
+      </div>
+
+      <h3>5-1. 같은 학생 자료, 다른 함수 전달 방식</h3>
+      <div class="coupling-grid">
+        <article class="card">
+          <span class="badge">자료 결합도 · Data Coupling</span>
+          <pre><code>char getGrade(int score) {
+    return score &gt;= 90 ? 'A' : 'B';
+}
+
+grade = getGrade(s.score);</code></pre>
+          <p>함수가 판단에 필요한 <code>score</code> 하나만 받습니다. 함수 입장에서는 학생의 이름이나 학번을 알 필요가 없습니다.</p>
+        </article>
+        <article class="card">
+          <span class="badge">스탬프 결합도 · Stamp Coupling</span>
+          <pre><code>char getGrade(Student s) {
+    return s.score &gt;= 90 ? 'A' : 'B';
+}
+
+grade = getGrade(s);</code></pre>
+          <p>판단에는 점수만 필요하지만 학생 구조체 전체를 받습니다. 함수가 자료구조의 모양에 의존합니다.</p>
+        </article>
+      </div>
+
+      <div class="visual">
+        <p><strong>비전공자용 비유: 성적 확인 창구에 무엇을 건넬까?</strong></p>
+        <div class="flow">
+          <div class="node good">점수 91만 전달<br><strong>필요 자료만</strong></div>
+          <div class="arrow">→</div>
+          <div class="node good">등급 판정 함수<br><strong>자료 결합도</strong></div>
+        </div>
+        <div class="flow">
+          <div class="node mid">학생 서류철 전체<br>이름·주소·점수</div>
+          <div class="arrow">→</div>
+          <div class="node mid">등급 판정 함수<br><strong>스탬프 결합도</strong></div>
+        </div>
+      </div>
+
+      <h3>5-2. 시험용 결합도 순서표</h3>
+      <p>결합도는 낮을수록 모듈이 덜 얽혀 있어 좋은 설계로 봅니다. 오늘 핵심은 <strong>자료 결합도와 스탬프 결합도의 차이</strong>이지만, 전체 위치도 알아두면 이론 문제에 대응할 수 있습니다.</p>
+      <div class="coupling-scale" aria-label="결합도 약함에서 강함 순서">
+        <div class="scale-step">자료 결합도<br>필요 값 전달<br>낮음/좋음</div>
+        <div class="scale-step">스탬프 결합도<br>자료구조 전달</div>
+        <div class="scale-step">제어 결합도<br>플래그 전달</div>
+        <div class="scale-step">외부 결합도<br>외부 형식 공유</div>
+        <div class="scale-step">공통 결합도<br>전역 공유</div>
+        <div class="scale-step">내용 결합도<br>내부 침범<br>높음/나쁨</div>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>상황</th><th>무엇을 전달/공유하나</th><th>판정</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>평균 함수에 <code>score</code>, <code>count</code>만 전달</td><td>필요한 데이터 항목</td><td>자료 결합도</td></tr>
+          <tr><td>등급 함수에 <code>Student</code> 전체를 전달하지만 <code>score</code>만 사용</td><td>레코드 전체</td><td>스탬프 결합도</td></tr>
+          <tr><td>정렬 함수에 <code>mode</code>를 보내 오름/내림 동작을 지시</td><td>처리를 결정하는 제어값</td><td>제어 결합도</td></tr>
+          <tr><td>여러 함수가 전역 배열 <code>students</code>를 직접 수정</td><td>공통 데이터 영역</td><td>공통 결합도</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>정리:</strong> 구조체 자체는 나쁜 것이 아닙니다. 학생 한 명을 표현할 때 구조체는 자연스럽고 안전합니다. 다만 "점수만 필요했던 함수에 구조체 전체를 보내는 설계"를 결합도 문제에서 물으면, <strong>스탬프 결합도</strong>로 읽어야 합니다.
+      </div>
+    </section>
+
+    <section id="lab">
+      <h2>6. 코딩 실습: 읽고, 추적하고, 직접 바꾸기</h2>
+      <p>아래 실습은 컴파일 전에 먼저 출력 결과를 손으로 예상합니다. 그 다음 실제 실행 결과와 비교하고, 마지막으로 지시된 값을 바꾸어 새 문제로 만듭니다.</p>
+
+      <h3>실습 A. 구조체 한 개 만들고 출력하기</h3>
+      <pre><code>#include &lt;stdio.h&gt;
+
+typedef struct {
+    int no;
+    char name[20];
+    int score;
+} Student;
+
+int main(void) {
+    Student s = {101, "Hana", 82};
+
+    printf("번호:%d\n", s.no);
+    printf("이름:%s\n", s.name);
+    printf("점수:%d\n", s.score);
+    return 0;
+}</code></pre>
+      <ol class="steps">
+        <li>코드를 입력하기 전에 <code>s</code>라는 큰 상자를 그리고 <code>no</code>, <code>name</code>, <code>score</code> 세 칸을 그립니다.</li>
+        <li>각 칸에 들어갈 값을 쓰고 예상 출력을 적습니다.</li>
+        <li>컴파일해 결과가 같은지 확인합니다.</li>
+        <li><code>score</code>를 82에서 95로 바꾸고, <code>printf("합격:%c\n", s.score &gt;= 60 ? 'Y' : 'N');</code>를 추가합니다.</li>
+      </ol>
+
+      <h3>실습 B. 구조체 배열의 합계와 합격 인원</h3>
+      <pre><code>#include &lt;stdio.h&gt;
+
+typedef struct {
+    char name[10];
+    int score;
+} Student;
+
+int main(void) {
+    Student list[4] = {
+        {"A", 45}, {"B", 72}, {"C", 88}, {"D", 59}
+    };
+    int i, total = 0, pass = 0;
+
+    for (i = 0; i &lt; 4; i++) {
+        total += list[i].score;
+        if (list[i].score &gt;= 60) {
+            pass++;
+        }
+        printf("%d회: total=%d, pass=%d\n", i + 1, total, pass);
+    }
+
+    printf("result=%d/%d\n", total, pass);
+    return 0;
+}</code></pre>
+
+      <table class="trace">
+        <thead>
+          <tr><th><code>i</code></th><th>이름</th><th>점수</th><th><code>total</code></th><th><code>pass</code></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>A</td><td>45</td><td>45</td><td>0</td></tr>
+          <tr><td>1</td><td>B</td><td>72</td><td>117</td><td>1</td></tr>
+          <tr><td>2</td><td>C</td><td>88</td><td>205</td><td>2</td></tr>
+          <tr><td>3</td><td>D</td><td>59</td><td>264</td><td>2</td></tr>
+        </tbody>
+      </table>
+      <div class="grid-2">
+        <div class="box">
+          <span class="badge">예상 결과</span>
+          <p>마지막 출력은 <code>result=264/2</code>입니다.</p>
+        </div>
+        <div class="box">
+          <span class="badge">직접 변형</span>
+          <p>D의 점수를 <code>60</code>으로 바꾸면 합계와 합격 인원은 각각 무엇으로 변하는지 먼저 적고 실행합니다.</p>
+        </div>
+      </div>
+
+      <h3>실습 C. 구조체 포인터로 원본 값 수정하기</h3>
+      <p>함수의 매개변수가 구조체 자체면 복사본을 고치고, 구조체 포인터면 원본 칸을 고칠 수 있습니다. 이 차이는 출력 추적 문제의 단골입니다.</p>
+      <pre><code>#include &lt;stdio.h&gt;
+
+typedef struct {
+    char name[10];
+    int score;
+} Student;
+
+void bonus(Student *p, int point) {
+    p-&gt;score += point;
+    if (p-&gt;score &gt; 100) {
+        p-&gt;score = 100;
+    }
+}
+
+int main(void) {
+    Student s = {"Kim", 88};
+    bonus(&amp;s, 15);
+    printf("%s %d\n", s.name, s.score);
+    return 0;
+}</code></pre>
+      <div class="visual">
+        <div class="flow">
+          <div class="struct-card">
+            <div class="struct-title">main의 s</div>
+            <div class="fields">
+              <div class="field"><small>name</small><strong>Kim</strong></div>
+              <div class="field"><small>score</small><strong>88 → 100</strong></div>
+            </div>
+          </div>
+          <div class="arrow">←</div>
+          <div class="node mid"><code>p = &amp;s</code><br><code>p-&gt;score</code>로 수정</div>
+        </div>
+      </div>
+      <p><code>88 + 15</code>는 103이지만, 함수 내부의 조건문 때문에 다시 100이 됩니다. 출력은 <code>Kim 100</code>입니다.</p>
+
+      <h3>실습 D. 값 전달과 주소 전달 비교</h3>
+      <pre><code>#include &lt;stdio.h&gt;
+
+typedef struct {
+    int score;
+} Student;
+
+void changeA(Student s) {
+    s.score += 10;
+}
+
+void changeB(Student *s) {
+    s-&gt;score += 10;
+}
+
+int main(void) {
+    Student x = {70};
+    changeA(x);
+    printf("%d ", x.score);
+    changeB(&amp;x);
+    printf("%d\n", x.score);
+    return 0;
+}</code></pre>
+      <table>
+        <thead>
+          <tr><th>호출</th><th>함수 안에서 수정하는 대상</th><th>호출 후 <code>x.score</code></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>changeA(x)</code></td><td><code>x</code>의 복사본</td><td>70 그대로</td></tr>
+          <tr><td><code>changeB(&amp;x)</code></td><td><code>x</code>의 주소가 가리키는 원본</td><td>80</td></tr>
+        </tbody>
+      </table>
+      <p class="answer">최종 출력: <code>70 80</code></p>
+
+      <h3>90분 실습 완료 체크</h3>
+      <ul class="checklist">
+        <li>실습 A를 입력하고 <code>.</code>로 세 멤버를 출력했다.</li>
+        <li>실습 B의 변화표를 손으로 쓰고 D의 점수를 60으로 바꾸어 재실행했다.</li>
+        <li>실습 C의 <code>p-&gt;score</code>를 <code>(*p).score</code>로 바꾸어 같은 결과인지 확인했다.</li>
+        <li>실습 D에서 두 함수의 출력이 다른 이유를 "복사본"과 "원본 주소"라는 말로 설명했다.</li>
+      </ul>
+    </section>
+
+    <section id="exam">
+      <h2>7. 실전 실기 수준 연습문제</h2>
+      <p>문제를 풀 때는 답을 먼저 펼치지 말고, 구조체 배열의 각 원소와 변경된 멤버값을 표로 기록합니다. 실제 시험에서는 머릿속 암산보다 이 방식이 훨씬 안전합니다.</p>
+
+      <div class="quiz-grid">
+        <article class="problem">
+          <h4>문제 1. 멤버값 갱신</h4>
+          <pre><code>typedef struct {
+    int x;
+    int y;
+} Point;
+
+int main(void) {
+    Point p = {2, 5};
+    p.x += p.y;
+    p.y = p.x - p.y;
+    printf("%d %d", p.x, p.y);
+}</code></pre>
+          <p>출력 결과를 쓰시오.</p>
+          <details>
+            <summary>정답과 추적표 보기</summary>
+            <div>
+              <p class="answer">정답: <code>7 2</code></p>
+              <table class="trace">
+                <tr><th>실행 직후</th><th><code>p.x</code></th><th><code>p.y</code></th></tr>
+                <tr><td>초기화</td><td>2</td><td>5</td></tr>
+                <tr><td><code>p.x += p.y</code></td><td>7</td><td>5</td></tr>
+                <tr><td><code>p.y = p.x - p.y</code></td><td>7</td><td>2</td></tr>
+              </table>
+            </div>
+          </details>
+        </article>
+
+        <article class="problem">
+          <h4>문제 2. 구조체 배열과 조건</h4>
+          <pre><code>typedef struct { int n; int score; } Data;
+
+int main(void) {
+    Data a[3] = {{1, 60}, {2, 85}, {3, 70}};
+    int i, r = 0;
+    for (i = 0; i &lt; 3; i++) {
+        if (a[i].score &gt;= 70)
+            r += a[i].n;
+        else
+            r -= a[i].n;
+    }
+    printf("%d", r);
+}</code></pre>
+          <p>출력 결과를 쓰시오.</p>
+          <details>
+            <summary>정답과 해설 보기</summary>
+            <div>
+              <p class="answer">정답: <code>4</code></p>
+              <p>60인 1번은 불합격이므로 <code>r = -1</code>, 85인 2번은 더해서 <code>1</code>, 70인 3번도 조건을 만족해 더하면 <code>4</code>입니다.</p>
+            </div>
+          </details>
+        </article>
+
+        <article class="problem">
+          <h4>문제 3. 포인터와 구조체 수정</h4>
+          <pre><code>typedef struct { int a; int b; } Pair;
+
+void run(Pair *p) {
+    p-&gt;a = p-&gt;a + p-&gt;b;
+    p-&gt;b = p-&gt;a * 2;
+}
+
+int main(void) {
+    Pair x = {3, 4};
+    run(&amp;x);
+    printf("%d", x.a + x.b);
+}</code></pre>
+          <p>출력 결과를 쓰시오.</p>
+          <details>
+            <summary>정답과 해설 보기</summary>
+            <div>
+              <p class="answer">정답: <code>21</code></p>
+              <p>첫 문장에서 <code>a = 7</code>이 된 뒤, 갱신된 <code>a</code>로 <code>b = 14</code>를 계산합니다. 따라서 합은 21입니다.</p>
+            </div>
+          </details>
+        </article>
+
+        <article class="problem">
+          <h4>문제 4. 구조체 복사</h4>
+          <pre><code>typedef struct { int v; } Item;
+
+int main(void) {
+    Item x = {5};
+    Item y = x;
+    y.v += 3;
+    printf("%d %d", x.v, y.v);
+}</code></pre>
+          <p>출력 결과를 쓰시오.</p>
+          <details>
+            <summary>정답과 해설 보기</summary>
+            <div>
+              <p class="answer">정답: <code>5 8</code></p>
+              <p><code>Item y = x;</code>는 구조체의 멤버값을 복사합니다. <code>y.v</code>를 바꿔도 별도 변수인 <code>x.v</code>는 변하지 않습니다.</p>
+            </div>
+          </details>
+        </article>
+
+        <article class="problem">
+          <h4>문제 5. 문자열 멤버와 반복문</h4>
+          <pre><code>typedef struct {
+    char word[10];
+    int count;
+} Text;
+
+int main(void) {
+    Text t = {"CABA", 0};
+    int i;
+    for (i = 0; t.word[i] != '\0'; i++) {
+        if (t.word[i] == 'A')
+            t.count++;
+    }
+    printf("%d", t.count);
+}</code></pre>
+          <p>출력 결과를 쓰시오.</p>
+          <details>
+            <summary>정답과 해설 보기</summary>
+            <div>
+              <p class="answer">정답: <code>2</code></p>
+              <p>구조체 안의 <code>word</code>도 평범한 문자 배열입니다. 문자열 <code>CABA</code>에서 <code>A</code>는 두 번 나타납니다.</p>
+            </div>
+          </details>
+        </article>
+
+        <article class="problem">
+          <h4>문제 6. 최고값의 인덱스</h4>
+          <pre><code>typedef struct { char id; int value; } Node;
+
+int main(void) {
+    Node n[4] = {{'A', 7}, {'B', 4}, {'C', 9}, {'D', 8}};
+    int i, max = 0;
+    for (i = 1; i &lt; 4; i++) {
+        if (n[max].value &lt; n[i].value)
+            max = i;
+    }
+    printf("%c %d", n[max].id, max);
+}</code></pre>
+          <p>출력 결과를 쓰시오.</p>
+          <details>
+            <summary>정답과 해설 보기</summary>
+            <div>
+              <p class="answer">정답: <code>C 2</code></p>
+              <p>가장 큰 값은 <code>n[2].value</code>의 9이므로 <code>max</code>에는 값 9가 아니라 위치 2가 들어 있습니다.</p>
+            </div>
+          </details>
+        </article>
+      </div>
+
+      <h3>개념 서술형: 결합도 판정</h3>
+      <div class="problem">
+        <p><strong>문제 7.</strong> 함수 <code>printGrade</code>는 학생의 등급만 계산하기 위해 점수만 필요하다. 아래 두 호출 방식의 결합도를 각각 쓰고, 더 의존성이 낮은 방식을 고르시오.</p>
+        <pre><code>// 방식 A
+char printGrade(int score);
+result = printGrade(s.score);
+
+// 방식 B
+char printGrade(Student s);
+result = printGrade(s);</code></pre>
+        <details>
+          <summary>정답과 해설 보기</summary>
+          <div>
+            <p><span class="answer">방식 A: 자료 결합도</span>, <span class="answer">방식 B: 스탬프 결합도(자료구조 결합도)</span>입니다.</p>
+            <p>필요한 값인 점수만 전달하는 A가 구조체의 내부 구성 변화에 덜 의존하므로 결합도가 더 낮습니다. 단, 학생 전체 정보가 실제로 필요한 함수라면 구조체 전달 자체가 틀렸다는 뜻은 아닙니다.</p>
+          </div>
+        </details>
+      </div>
+
+      <h3>코드 작성형: 스스로 완성하기</h3>
+      <div class="grid-2">
+        <div class="box">
+          <h4>문제 8. 평균 이상 출력</h4>
+          <p><code>Student list[4]</code>를 받아 점수 평균을 구한 뒤, 평균 이상인 학생의 이름을 출력하는 프로그램을 작성하세요.</p>
+          <p>조건: 구조체 배열, <code>for</code>문 두 번, 정수 평균을 사용합니다.</p>
+        </div>
+        <div class="box">
+          <h4>문제 9. 보너스 함수</h4>
+          <p><code>void addBonus(Student *s, int bonus)</code>를 작성하세요. 점수에 보너스를 더하되 결과가 100을 넘으면 100으로 만듭니다.</p>
+          <p>확인 데이터: <code>{"Lee", 96}</code>에 7점을 주면 100이 출력되어야 합니다.</p>
+        </div>
+      </div>
+      <details>
+        <summary>문제 8-9 예시 답안 보기</summary>
+        <div>
+          <pre><code>typedef struct {
+    char name[20];
+    int score;
+} Student;
+
+void addBonus(Student *s, int bonus) {
+    s-&gt;score += bonus;
+    if (s-&gt;score &gt; 100)
+        s-&gt;score = 100;
+}
+
+void printAboveAverage(Student list[], int size) {
+    int i, total = 0, avg;
+    for (i = 0; i &lt; size; i++)
+        total += list[i].score;
+
+    avg = total / size;
+    for (i = 0; i &lt; size; i++) {
+        if (list[i].score &gt;= avg)
+            printf("%s ", list[i].name);
+    }
+}</code></pre>
+          <p>배열을 함수로 넘기면 원소에 접근할 수 있고, <code>Student *s</code>는 학생 한 명의 원본을 수정할 때 사용합니다.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="self">
+      <h2>8. 혼자 공부하는 학생을 위한 복습 루트</h2>
+      <h3>오늘 반드시 이해할 다섯 문장</h3>
+      <div class="grid-2">
+        <div class="box">
+          <ul>
+            <li>구조체는 한 대상의 관련 있는 여러 값을 묶는 사용자 정의 자료형이다.</li>
+            <li><code>.</code>는 구조체 변수의 멤버를, <code>-&gt;</code>는 구조체 포인터가 가리킨 대상의 멤버를 선택한다.</li>
+            <li><code>list[i].score</code>는 i번째 구조체 원소 안의 점수 멤버이다.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <ul>
+            <li>필요 값만 함수에 넘기는 것은 자료 결합도, 구조체 전체를 넘기는 것은 스탬프 결합도로 구분한다.</li>
+            <li>실기 코드에서는 이전 줄에서 바뀐 멤버값으로 다음 줄을 계산해야 한다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>자율 연습 과제</h3>
+      <ol>
+        <li><code>Book</code> 구조체를 만들고 제목(<code>title</code>), 가격(<code>price</code>), 재고(<code>stock</code>)를 멤버로 선언하세요. 책 3권을 배열에 넣고 총 재고 금액(<code>price * stock</code> 합계)을 출력하세요.</li>
+        <li>문제 2의 조건을 <code>score &gt;= 80</code>으로 바꾸어 출력값을 다시 계산하고 실행으로 확인하세요.</li>
+        <li>실습 C의 <code>bonus</code> 함수를 값 전달 방식 <code>void bonus(Student p, int point)</code>으로 바꿨을 때 <code>main</code>의 출력이 왜 달라지는지 한 문장으로 적으세요.</li>
+        <li>점수만 필요한 함수에 <code>Student</code> 전체를 전달하는 코드와 <code>int score</code>만 전달하는 코드를 각각 작성하고, 결합도 이름을 주석으로 표시하세요.</li>
+        <li><code>Student list[5]</code> 중 이름에 문자 <code>'a'</code>가 포함된 학생의 점수 합계를 구하는 코드를 작성하세요. 문자열 반복과 구조체 배열을 결합하는 연습입니다.</li>
+      </ol>
+
+      <h3>오답 방지 체크리스트</h3>
+      <ul class="checklist">
+        <li>구조체 설계도 선언 끝의 세미콜론 <code>;</code>을 썼다.</li>
+        <li>구조체 변수에는 <code>.</code>, 포인터에는 <code>-&gt;</code>를 사용했다.</li>
+        <li>문자 배열 멤버를 선언 이후 바꿀 때 <code>strcpy</code>를 사용했다.</li>
+        <li>구조체 배열에서 <code>list[i].member</code> 순서를 혼동하지 않았다.</li>
+        <li>함수가 구조체 복사본을 받는지, 주소를 받아 원본을 바꾸는지 확인했다.</li>
+        <li>구조체 전체 전달을 무조건 자료 결합도라고 쓰지 않고 스탬프 결합도와 구분했다.</li>
+      </ul>
+
+      <h3>수업 종료 미니 테스트</h3>
+      <table>
+        <thead>
+          <tr><th>질문</th><th>답을 말할 수 있으면 완료</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>배열과 구조체의 핵심 차이는?</td><td>같은 형의 여러 값 vs 한 대상의 서로 다른 성격의 값 묶음</td></tr>
+          <tr><td><code>p-&gt;x</code>를 다른 문법으로 쓰면?</td><td><code>(*p).x</code></td></tr>
+          <tr><td><code>Student a[3]</code>에서 두 번째 학생의 점수는?</td><td><code>a[1].score</code></td></tr>
+          <tr><td>점수 하나만 함수로 전달하면 어떤 결합도인가?</td><td>자료 결합도</td></tr>
+          <tr><td>필요 이상의 구조체 전체를 전달하면?</td><td>스탬프 결합도(자료구조 결합도)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout exam">
+        <strong>마지막 학습 지시:</strong> 오늘 문제 중 최소 세 개는 숫자나 조건을 직접 바꾸어 다시 추적하세요. 구조체 문제는 문법을 외워서 끝나는 것이 아니라, "어느 학생의 어느 멤버가 현재 얼마인가"를 놓치지 않는 연습에서 점수가 만들어집니다.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    정보처리기사 실기 2달 코스 · 2주차 C언어 5일차 · 구조체와 자료 결합 · 2026-05-29
+  </footer>
+</body>
+</html>
