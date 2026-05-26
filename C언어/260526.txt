@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    int nums[3];
+    char str[3];
+    char c1 = 'A';
+    /* 배열은 포인터에요. 배열은 heap 영역 어딘가의 시작주소를 가져요 */
+    printf("nums가 가진거 뭐니 : %p \n", nums);
+    printf("str아 넌 뭐 가졌니: %p \n", str);
+
+    /* 얘는 포인터나 배열 아니에요. 그냥 상수 데이터 가져요 */
+    printf("c1아 넌 뭐 가졌니: %c \n", c1);
+
+    return 0;
+}
