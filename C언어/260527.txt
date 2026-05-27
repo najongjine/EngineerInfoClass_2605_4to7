@@ -122,3 +122,16 @@ int main() {
 	c =*p1;// 원산지 찾아가기
 	return 0;
 }
+
+
+-----------------------------
+
+#include <stdio.h>
+
+
+int main() {
+	int a = 1;
+	int* p1 = &a;
+	printf("%d \n", p1[0]);
+	return 0;
+}
