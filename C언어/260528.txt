@@ -22,3 +22,18 @@ int main() {
 	printc1(c1, size);
 	return 0;
 }
+
+
+----------------------
+
+#include <stdio.h>
+
+void main() {
+    char word[5] = { 'C', 'O', 'D', 'E', '\0' };
+    char* w2 = &word[0];
+    
+    printf("word:%s \n", word);
+    printf("w2:%s \n", w2);
+
+    return 0;
+}
