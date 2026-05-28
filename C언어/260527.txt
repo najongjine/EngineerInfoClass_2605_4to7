@@ -1,0 +1,137 @@
+#include <stdio.h>
+
+/* 함수를 해독하는 방법:
+리턴 타입이 뭐냐
+매개변수가 뭐냐
+뭘 하는 놈이냐 */
+void dummy1() {
+	printf("dummy1 함수에요 \n");
+	1 + 1;
+}
+
+/* 매개변수 : 변수 선언한거와 같음.
+그런데 특별한점은, 다른 모듈이 주는 데이터를 저기로 받을수 있음 */
+void dummy2(char str[100]) {
+	str += 2;
+	printf("%s \n", str);
+}
+
+/* 리턴타입 : 데이터를 퉤 뱉을수 있다 */
+int dummy3() {
+	return 0;
+}
+
+/* 리턴타입, 매개변수 다 있는 함수 */
+int dummy4(int a, int b) {
+	return a + b;
+}
+
+int main() {
+	// 함수를 호출한다
+	dummy1();
+	dummy2("hello");
+	int c = dummy4(1, 2);
+	printf("%d \n", dummy4(1,2));
+	return 0;
+}
+
+
+-------------------------------
+
+#include <stdio.h>
+/* 각각의 함수는 자신만의 커스텀 scope을 가져요
+main 함수의 a,b 랑 change1 의 a,b 는 다른 scope에 사는 녀석들 이에요 
+자료결합도. 가장 좋은 결합도라고 해요 
+원본에 있는 데이터가 손상이 안가요.
+*/
+void change1(int a, int b) {
+	a = a + 900;
+	b = b - 900;
+}
+
+/* stamp 결합도. 주소가 전달됨.
+원본에 손상이 감 */
+int* change2(int ar[]) {
+	ar[0] += 900;
+	ar[1] += -900;
+	return ar;
+}
+
+int main() {
+	int a = 1;
+	int b = 2;
+	int ar1[] = {1,2};
+	int *ar2 = change2(ar1);
+	printf("%d, %d \n", ar1[0], ar1[1]);
+	printf("ar1: %p \n",ar1);
+	printf("ar2: %p \n",ar2);
+	return 0;
+}
+
+--------------------------
+
+#include <stdio.h>
+
+int dummy1(int ar[], int size) {
+	int count = 0;
+	for (int i = 0; i < size;i++) {
+		if (ar[i]%2!=0) {
+			++count;
+		}
+	}
+	return count;
+}
+
+int main() {
+	int ar1[] = {1,2,3,6,4};
+	// 배열길이 구하는 코드
+	int size= sizeof(ar1) / sizeof(ar1[0]);
+	printf("%d \n", size);
+	return 0;
+}
+
+
+---------------------------
+
+
+#include <stdio.h>
+
+
+int main() {
+	int a = 1;
+	int b = 2;
+	// * 기호가 데이터들 사이에 켜 있으면 수학의 곱하기
+	a * b; 
+
+	// & 기호가 변수 왼쪽에 단독으로 있으면 주소 뽑아내기
+	&a;
+
+	// * 기호가 자료형, 선언부분에 꼽사리 켜있으면 포인터 변수 선언
+	int* p1 = &a;
+	// * 기호가 변수 왼쪽에 단독으로 있으면, 원산지 찾아가기
+	a= *p1;
+
+	int c = 1 *b;// 곱하기
+
+	int* p2; // 포인터 변수선언
+
+	c = a & b; // 논리 비트 연산
+
+	p1 = &b; // 변수의 메모리 주소뽑기
+
+	c =*p1;// 원산지 찾아가기
+	return 0;
+}
+
+
+-----------------------------
+
+#include <stdio.h>
+
+
+int main() {
+	int a = 1;
+	int* p1 = &a;
+	printf("%d \n", p1[0]);
+	return 0;
+}
