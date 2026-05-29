@@ -142,7 +142,7 @@ int main() {
     int** pp = &p;
     int num = 4;
 
-    func(pp, sizeof(ar) / sizeof(ar[0]); );
+    func(pp, sizeof(ar) / sizeof(ar[0]) );
     num = ar[0];
     printf("%d", num);
 
