@@ -55,3 +55,34 @@ int main() {
 
     return 0;
 }
+
+
+--------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int** arr = (int**)malloc(sizeof(int*) * 2);
+
+    arr[0] = (int*)malloc(sizeof(int) * 3);
+    arr[1] = (int*)malloc(sizeof(int) * 3);
+
+    arr[0][0] = 10;
+    arr[0][1] = 20;
+    arr[0][2] = 30;
+
+    arr[1][0] = 40;
+    arr[1][1] = 50;
+    arr[1][2] = 60;
+
+    printf("%d\n", arr[0][0]);
+    printf("%d\n", arr[0][1]);
+    printf("%d\n", arr[1][2]);
+
+    free(arr[0]);
+    free(arr[1]);
+    free(arr);
+
+    return 0;
+}
