@@ -1,0 +1,83 @@
+p93
+* 공통모듈
+- 함수로 만들고, 여러놈들이 갔다 쓴다
+  예:print()
+- 모듈의 개수가 많은경우: 모듈의 크기가 작고, 통합 비용이 크다.
+- 모듈의 개수가 적은경우: 모듈의 크기가 크고, 통합 비용이 작다.
+
+p94
+* 소프트웨어 재사용
+- 옛날에 만들어놨던거 쬐금만 고치고 또 쓴다
+  (모듈단위, 컴포넌트단위, 어플리케이션 단위)
+
+p95
+* 소프트웨어 재공학
+- 옛날에 어셈블리로 만듬. 이걸 c#으로 다시만듬.
+  스타크래프트라는 할아버지겜 c언어로 만듬. 유저들이 유즈맵 만들고 싶고,
+  너무 옜날이서 기능추가가 쉽지 않음.
+  스타크래프트를 c# 다시 만든다. 그러면 훨신 더 쉬워져서 새로운 유즈맵 만들수있다.
+
+* 역공학
+- GPT한테 포멧몬 레드 게임 주고선, 니가이거 소스코드로 변환시켜
+
+
+p97
+*** 응집도 : 높으면 좋은거
+- 기능적응집도(functional) : 하나의 문제를 해결하기위해 모임. 목적이 같음.
+- 순차적응집도(Sequential) : A모듈의 결과가 B모듈의 입력으로 들어감.
+- 통신적응집도(communication) : A모듈의 결과를 B,C,D... 모듈들이 갔다씀.
+- 절차적응집도(Procedural): 모듈들이 순차적으로 실행
+- 시간적응집도(Temporal): 모듈들이 연관성은 없는데, 그냥 특정 시기에 수행됨
+- 논리적응집도(logical): 비슷한 종류의 기능들을 한 모듈에 모아놨지만, 실제로는 서로 다른 일을 하는 상태
+- 우연적응집도(Coincidential) : 제일꾸짐. 우연히 모듈들이 그냥 있음.
+
+p99
+*** 결합도 : 낮아야 좋은거
+- 자료결합도(Data): A모듈에서 B모듈로 서로 소통할때 parameter 로 줘라.
+  데이터를줄때 상수값 복사본을 줘서 원본에 손상이 안가는거
+  int a=1; myfunc(a);
+- Stamp결합도: A모듈에서 B모듈로 서로 소통할때 parameter 로 줘라.
+  데이터를 줄때 주소로 줘라. (java, python에선 숫자,boolean,문자열 빼고는 전부다 stamp 결합도)
+- 제어결합도(Control): 전달 대상에게 값만 전달하는게 아니라 제어요소도 함께 전달
+  myfunc(int data, int type){
+   if(type==1) 학생작업
+   if(type==2) 교사작업
+   else 행정작업
+  }
+- 외부결합도(External): 외부에 있는 데이터, 파일, 장치, 통신 프로토콜 등에 의존
+   int count = 10; // 전역 변수
+
+   void moduleA() {
+      count++;
+   }
+
+   void moduleB() {
+      printf("%d", count);
+   }
+- 공유결합도(common): 여러 모듈이 같은 전역 데이터 / 공통 데이터 영역을 같이 사용
+   class GlobalData {
+      public static int total = 0;
+   }
+
+   class A {
+      void add() {
+         GlobalData.total += 10;
+      }
+   }
+
+   class B {
+      void print() {
+         System.out.println(GlobalData.total);
+      }
+   }
+- 내용결합도(Content): 한 모듈이 다른 모듈의 내부를 직접 건드림
+   class Account {
+      public int balance = 10000;
+   }
+
+   class PaymentService {
+      void pay(Account account) {
+         // Account의 내부 데이터 balance를 직접 건드림
+         account.balance -= 3000;
+      }
+   }
