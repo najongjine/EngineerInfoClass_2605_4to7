@@ -11,3 +11,26 @@ int main() {
     
     return 0;
 }
+
+-----------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int a = 10;
+    int b = 20;
+
+    // int 값을 담는 배열이 아니라
+    // int 변수들의 "주소"를 담는 배열
+    int* arr[2];
+
+    arr[0] = &a;
+    arr[1] = &b;
+    
+
+    printf("%d\n", *arr[0]); // 10
+    printf("%d\n", *arr[1]); // 20
+    
+
+    return 0;
+}
