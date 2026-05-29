@@ -41,10 +41,14 @@ int main() {
 #include <stdlib.h>
 
 int main() {
-    /* malloc : 실행중에 메모리를 자유자제로 할당해주기 */
+    /* malloc : 실행중에 메모리를 자유자제로 할당해주기
+    malloc 뜻: heap 공간에 공간 할당한다 */
     int ar[2];
     int ar2[] = { 1,2 };
 
+    /* heap 영역에 공간 할당 하겠다. 정수 용도로
+    heap영역에 공간 할당하고 거기 공간 주소가 H0 라고 가정하면
+    main stack 변수 p에다가 H0 저장 하겠다 */
     int* p = (int*)malloc(sizeof(int));
     *p = 10;
     
