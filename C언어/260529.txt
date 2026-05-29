@@ -34,3 +34,20 @@ int main() {
 
     return 0;
 }
+
+------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    /* malloc : 실행중에 메모리를 자유자제로 할당해주기 */
+    int ar[2];
+    int ar2[] = { 1,2 };
+
+    int* p = (int*)malloc(sizeof(int));
+    *p = 10;
+    
+
+    return 0;
+}
