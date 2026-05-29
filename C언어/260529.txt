@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+    int a = 1;
+    /* 포인터건 더블포인터건 트리플포인터건 그냥 주소저장함 */
+    int* pa = &a;
+    int** ppa = &pa;
+
+    printf("%d \n", *pa);
+    printf("%d \n", **ppa);
+    
+    return 0;
+}
