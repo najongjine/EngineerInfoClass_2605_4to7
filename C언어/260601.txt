@@ -114,3 +114,27 @@ int main(void) {
 
     return 0;
 }
+
+---------------------------
+
+#include <stdio.h>
+
+struct Node {
+    struct Node* next;
+    int x;
+};
+
+int main() {
+    struct Node t1 = { NULL, 1 };
+    struct Node t2 = { NULL, 2 };
+    struct Node t3 = { NULL, 3 };
+
+    t1.next = &t2;
+    t2.next = &t3;
+    t3.next = &t1;
+
+    struct Node* start = &t1;
+    printf("%d \n", start->x);
+
+    
+}
