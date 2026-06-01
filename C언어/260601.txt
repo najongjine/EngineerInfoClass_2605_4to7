@@ -40,3 +40,25 @@ int main() {
     
     return 0;
 }
+
+
+------------------------
+
+#include <stdio.h>
+#include <string.h>
+
+struct Student {
+    char name[100];
+    int score;
+    char grade;
+};
+int main() {
+    struct Student s1;
+    strcpy_s(s1.name, sizeof(s1.name), "Minji");
+    s1.score = 87;
+    s1.grade = 'B';
+    
+    printf("name: %s \n score:%d \n grade:%c \n", 
+        s1.name, s1.score, s1.grade);
+    return 0;
+}
