@@ -91,3 +91,26 @@ int main(void) {
     printf("avg=%d\n", sum / 3);
     return 0;
 }
+
+-----------------------------
+
+#include <stdio.h>
+
+typedef struct {
+    int x;
+    int y;
+} Point;
+
+int main(void) {
+    Point p1 = { 2, 5 };
+    Point p2 = { 7, 8 };
+
+    int dx = p2.x - p1.x;
+    int dy = p2.y - p1.y;
+
+    int distance2 = dx * dx + dy * dy;
+
+    printf("%d\n", distance2);
+
+    return 0;
+}
