@@ -1,0 +1,39 @@
+package itinfo_2605_4to7;
+
+/*
+ * public : 외부에서 써도 됨
+ * static : static 영역에 있음. 공용영역
+ * 자바는 클래스로 시작해서 클래스로 끝납니다
+ * 
+ * 클래스: 누구는 설계도라고,
+ *  누구는 틀이라고하고
+ *  누구는 청사진이라고 합니다
+ * */
+public class Test1 {
+	public static void main(String[] args) {
+		short n1;
+		int n2=1/2;
+		long n3;
+		int []ar= {1,2};
+		
+		/* new := c 언어의 malloc 이라고 생각하면 되요
+		 * new는 무조건 heap 영역에 공간 만들고, 시작주소를 
+		 * 변수에 저장한다 */
+		int[] score = new int[5]; 
+		
+		float f1=(float)1/2;
+		double f2;
+		char c1='a';
+		
+		boolean b1=false;
+		// 문자열 전용
+		String str1="sada";
+		
+		/* c언어에서는 %d, %c, %s 이런거 썼어요
+		 * 그런데 자바는 그냥 println에 넣으면 지가 알아서 문자열로
+		 * 바꿔서 출력해요 */
+		System.out.println("str1는:"+str1);
+
+	}
+
+}
