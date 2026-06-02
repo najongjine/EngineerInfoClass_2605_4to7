@@ -154,3 +154,71 @@ public class Test1 {
 		Animal animal1=new Animal();
 	}
 }
+--------------------------------
+
+package itinfo_2605_4to7;
+
+/*
+ * 옛날에는 c언의 struct 없던때 생각보면 끔찍했어요
+ * 배열[0]번 고객의 정보를 가져오는데, 정렬이 일어났다?
+ * 그러면 이제 데이터 폐기처분 되요
+ * 
+ * struct이 나왔고, 관련있는 데이터를 싸매서 관리.
+ * 
+ * 데이터는 함수가 있어야 작동이되요
+ * 
+ * 나한테 
+ * Bank{
+ * int money;
+ * String name;
+ * int accNum;
+ * }
+ * 이렇게 데이터만 덩그러니 있으면 의미가 없어요.
+ * 송금, 출금, 인증 이런것들이 있어야하는데,
+ * 함수를 많이 만들면, 뭐가뭔지 알수 없어요
+ * 
+ * 자바는 계란의 노른자와 흰자처럼
+ * 
+ * 데이터와 알고리즘(기능)을 함께 묶는 기능이 생겼어요
+ * 그게 클래스
+ * 
+ * */
+
+/*
+ * 자바의 클래스는 계층구조로 되어있고,
+ * 모든 class는 무조건 Object 클래스를 자동으로 상속 받습니다
+ * */
+class Animal{
+	int leg=4;
+	int eye=2;
+	void makeSound() {
+		System.out.println("크르릉");
+	}
+	void attack() {
+		System.out.println("물기");
+	}
+	void printInfo() {
+		System.out.println("다리:"+leg);
+		System.out.println("눈:"+eye);
+	}
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		int a=1;
+		/* new 는 무조건 heap 영역에 공간 만들어요.
+		 * 클래스는 포인터에요 
+		 * Animal 설계도 안에 있는 정보를 실체화해서 
+		 * heap영역 어딘가에 다 때려넣고, 그곳의 주소를
+		 * animal1에 저장하는 거에요 */
+		Animal animal1=new Animal();
+		/* animal2 와 animal1은 같은 주소를 같게 되는 거에요 */
+		Animal animal2=animal1;
+		/* animal2를 변경하면 결론적으로 animal1에도 영향이 간다 */
+		animal2.eye=1;
+		animal1.printInfo();
+		
+		/* 자바는 
+		 * 숫자, boolean, 문자열 빼고는 다 stamp 결합도에요 */
+	}
+}
