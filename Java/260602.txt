@@ -37,3 +37,53 @@ public class Test1 {
 	}
 
 }
+
+----------------------------
+
+package itinfo_2605_4to7;
+
+/*
+ * public : 외부에서 써도 됨
+ * static : static 영역에 있음. 공용영역
+ * 자바는 클래스로 시작해서 클래스로 끝납니다
+ * 
+ * 클래스: 누구는 설계도라고,
+ *  누구는 틀이라고하고
+ *  누구는 청사진이라고 합니다
+ * */
+public class Test1 {
+	public static void main(String[] args) {
+		if(true) {
+			System.out.println("if문 참");
+		}else {
+			System.out.println("if문 거짓");
+		}
+		
+		if(1>2) {
+		}
+		else if(1<2) {
+		}
+		
+		/* switch는 if문이랑 비슷한데, 
+		 * matching 되는걸로 찾아가요 
+		 * case는 break 문이 없으면 그냥 밑에있는 case
+		 * 실행하러 가버려요 */
+		int a=3;
+		switch(a) {
+			case 3:
+				a+=3;
+				;
+			case 1:
+				a+=1;
+				break;
+			case 2:
+				a+=2;
+				break;
+			default:
+				a=0;
+		}
+		System.out.println("a:"+a);
+
+	}
+
+}
