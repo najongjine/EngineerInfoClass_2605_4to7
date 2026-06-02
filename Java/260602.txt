@@ -222,3 +222,27 @@ public class Test1 {
 		 * 숫자, boolean, 문자열 빼고는 다 stamp 결합도에요 */
 	}
 }
+--------------------------------
+
+package itinfo_2605_4to7;
+
+class Box {
+    int value = 10;
+    void change(int value) {
+    	/* 이건 change scope 안에있는 value밖에 접근 못해요
+    	 * field 에 있는 value는 못간다 그말이에요 */
+    	value = value + 5;
+        /* 
+         * this는 자기자신 클래스를 뜻하는 키워드에요
+         * 즉, 자기자신 클래스에있는 필드 value를 뜻합니다
+         * this.value = value + 5; 
+         * */
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Box b = new Box();
+        b.change(20);
+        System.out.println(b.value);
+	}
+}
