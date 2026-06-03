@@ -1,0 +1,248 @@
+package itinfo_2605_4to7;
+
+/*
+ * public : 외부에서 써도 됨
+ * static : static 영역에 있음. 공용영역
+ * 자바는 클래스로 시작해서 클래스로 끝납니다
+ * 
+ * 클래스: 누구는 설계도라고,
+ *  누구는 틀이라고하고
+ *  누구는 청사진이라고 합니다
+ * */
+public class Test1 {
+	public static void main(String[] args) {
+		short n1;
+		int n2=1/2;
+		long n3;
+		int []ar= {1,2};
+		
+		/* new := c 언어의 malloc 이라고 생각하면 되요
+		 * new는 무조건 heap 영역에 공간 만들고, 시작주소를 
+		 * 변수에 저장한다 */
+		int[] score = new int[5]; 
+		
+		float f1=(float)1/2;
+		double f2;
+		char c1='a';
+		
+		boolean b1=false;
+		// 문자열 전용
+		String str1="sada";
+		
+		/* c언어에서는 %d, %c, %s 이런거 썼어요
+		 * 그런데 자바는 그냥 println에 넣으면 지가 알아서 문자열로
+		 * 바꿔서 출력해요 */
+		System.out.println("str1는:"+str1);
+
+	}
+
+}
+
+----------------------------
+
+package itinfo_2605_4to7;
+
+/*
+ * public : 외부에서 써도 됨
+ * static : static 영역에 있음. 공용영역
+ * 자바는 클래스로 시작해서 클래스로 끝납니다
+ * 
+ * 클래스: 누구는 설계도라고,
+ *  누구는 틀이라고하고
+ *  누구는 청사진이라고 합니다
+ * */
+public class Test1 {
+	public static void main(String[] args) {
+		if(true) {
+			System.out.println("if문 참");
+		}else {
+			System.out.println("if문 거짓");
+		}
+		
+		if(1>2) {
+		}
+		else if(1<2) {
+		}
+		
+		/* switch는 if문이랑 비슷한데, 
+		 * matching 되는걸로 찾아가요 
+		 * case는 break 문이 없으면 그냥 밑에있는 case
+		 * 실행하러 가버려요 */
+		int a=3;
+		switch(a) {
+			case 3:
+				a+=3;
+				;
+			case 1:
+				a+=1;
+				break;
+			case 2:
+				a+=2;
+				break;
+			default:
+				a=0;
+		}
+		System.out.println("a:"+a);
+
+	}
+
+}
+------------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.Iterator;
+
+public class Test1 {
+	public static void main(String[] args) {
+		int []ar= {1,2};
+		for(int i=0; i<ar.length;i++) {
+			System.out.println(ar[i]);
+		}
+		for (int i : ar) {
+			System.out.println(i);
+		}
+	}
+}
+
+-------------------------------
+
+package itinfo_2605_4to7;
+
+/*
+ * 옛날에는 c언의 struct 없던때 생각보면 끔찍했어요
+ * 배열[0]번 고객의 정보를 가져오는데, 정렬이 일어났다?
+ * 그러면 이제 데이터 폐기처분 되요
+ * 
+ * struct이 나왔고, 관련있는 데이터를 싸매서 관리.
+ * 
+ * 데이터는 함수가 있어야 작동이되요
+ * 
+ * 나한테 
+ * Bank{
+ * int money;
+ * String name;
+ * int accNum;
+ * }
+ * 이렇게 데이터만 덩그러니 있으면 의미가 없어요.
+ * 송금, 출금, 인증 이런것들이 있어야하는데,
+ * 함수를 많이 만들면, 뭐가뭔지 알수 없어요
+ * 
+ * 자바는 계란의 노른자와 흰자처럼
+ * 
+ * 데이터와 알고리즘(기능)을 함께 묶는 기능이 생겼어요
+ * 그게 클래스
+ * 
+ * */
+class Animal{
+	int leg=4;
+	int eye=2;
+	void makeSound() {
+		System.out.println("크르릉");
+	}
+	void attack() {
+		System.out.println("물기");
+	}
+	void printInfo() {
+		System.out.println("다리:"+leg);
+		System.out.println("눈:"+eye);
+	}
+}
+public class Test1 {
+	public static void main(String[] args) {
+		// 객체를 창조한 것입니다
+		Animal animal1=new Animal();
+	}
+}
+--------------------------------
+
+package itinfo_2605_4to7;
+
+/*
+ * 옛날에는 c언의 struct 없던때 생각보면 끔찍했어요
+ * 배열[0]번 고객의 정보를 가져오는데, 정렬이 일어났다?
+ * 그러면 이제 데이터 폐기처분 되요
+ * 
+ * struct이 나왔고, 관련있는 데이터를 싸매서 관리.
+ * 
+ * 데이터는 함수가 있어야 작동이되요
+ * 
+ * 나한테 
+ * Bank{
+ * int money;
+ * String name;
+ * int accNum;
+ * }
+ * 이렇게 데이터만 덩그러니 있으면 의미가 없어요.
+ * 송금, 출금, 인증 이런것들이 있어야하는데,
+ * 함수를 많이 만들면, 뭐가뭔지 알수 없어요
+ * 
+ * 자바는 계란의 노른자와 흰자처럼
+ * 
+ * 데이터와 알고리즘(기능)을 함께 묶는 기능이 생겼어요
+ * 그게 클래스
+ * 
+ * */
+
+/*
+ * 자바의 클래스는 계층구조로 되어있고,
+ * 모든 class는 무조건 Object 클래스를 자동으로 상속 받습니다
+ * */
+class Animal{
+	int leg=4;
+	int eye=2;
+	void makeSound() {
+		System.out.println("크르릉");
+	}
+	void attack() {
+		System.out.println("물기");
+	}
+	void printInfo() {
+		System.out.println("다리:"+leg);
+		System.out.println("눈:"+eye);
+	}
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		int a=1;
+		/* new 는 무조건 heap 영역에 공간 만들어요.
+		 * 클래스는 포인터에요 
+		 * Animal 설계도 안에 있는 정보를 실체화해서 
+		 * heap영역 어딘가에 다 때려넣고, 그곳의 주소를
+		 * animal1에 저장하는 거에요 */
+		Animal animal1=new Animal();
+		/* animal2 와 animal1은 같은 주소를 같게 되는 거에요 */
+		Animal animal2=animal1;
+		/* animal2를 변경하면 결론적으로 animal1에도 영향이 간다 */
+		animal2.eye=1;
+		animal1.printInfo();
+		
+		/* 자바는 
+		 * 숫자, boolean, 문자열 빼고는 다 stamp 결합도에요 */
+	}
+}
+--------------------------------
+
+package itinfo_2605_4to7;
+
+class Box {
+    int value = 10;
+    void change(int value) {
+    	/* 이건 change scope 안에있는 value밖에 접근 못해요
+    	 * field 에 있는 value는 못간다 그말이에요 */
+    	value = value + 5;
+        /* 
+         * this는 자기자신 클래스를 뜻하는 키워드에요
+         * 즉, 자기자신 클래스에있는 필드 value를 뜻합니다
+         * this.value = value + 5; 
+         * */
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Box b = new Box();
+        b.change(20);
+        System.out.println(b.value);
+	}
+}
