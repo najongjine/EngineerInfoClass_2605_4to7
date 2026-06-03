@@ -66,3 +66,30 @@ public class Test1 {
 		A a=new A(1,2);
 	}
 }
+
+
+-----------------------
+
+package itinfo_2605_4to7;
+
+class Person {
+    String name;
+    int age;
+    /* 오버로딩:
+     * 똑같은 이름의 함수를, 매개변수의 타입과 갯수만 틀리게함
+     * 그러면 사용한땐 어떠한 데이터가 와도 처리되는 만능함수처럼 보여요 */
+    Person(){}
+    Person(int a){}
+    Person(char badsfsdfds){}
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Person p=new Person();
+		System.out.println(p.name);
+		System.out.println(p.age);
+	}
+}
