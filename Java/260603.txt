@@ -45,3 +45,24 @@ public class Test1 {
 		}
 	}
 }
+-----------------------------
+
+package itinfo_2605_4to7;
+
+class A{
+	/* 만약 내가 생성자를 단 한개도 안만들었다?
+	 * 그러면 컴파일 단계때 껍대기 생성자 A(){} 를 지가 만들어요 
+	 * 만약, 우리가 생성자를 만들었으면, 우리가 만든 형식에 맞는 생성자를
+	 * 호출해 줘야해요 */
+	A(){}
+	A(char a){}
+	A(int a){}
+	A(int a, int b){}
+	int val;
+}
+public class Test1 {
+	public static void main(String[] args) {
+		//      A() := 생성자 호출
+		A a=new A(1,2);
+	}
+}
