@@ -1,0 +1,25 @@
+package itinfo_2605_4to7;
+
+class Score {
+    int value;
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Score s1 = new Score();
+        s1.value = 70;
+
+        Score s2 = new Score();
+        s2.value = 90;
+        
+
+        System.out.println(s1.value);
+        System.out.println(s2.value);
+        
+        /* int a=b; 이런것처럼 자바는
+         * 객체의 상세값을 다른객체로부터 복붙 할수 없어요?
+         * s1=s2 하면 s2에 있던 필드들 값이 s1에 쫙 셋팅되는거
+         * 그런거 없어요?
+         * 순수 자바 기능에선 인스턴스의 필드값을 완전히
+         * 복사받는 방법은 없습니다. */
+	}
+}
