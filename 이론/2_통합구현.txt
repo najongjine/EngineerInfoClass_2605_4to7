@@ -1,0 +1,12 @@
+p161
+* XML(extensible markup language) 
+ - 사용자가 임의로 생성한 태그
+ - 옛날에 썼던 마크업언어
+
+* JSON(javascript object notation)
+ - javascript 기반. {"키이름":"값"} 형태로 표현
+ - 현대 데이터 통신에 쓰이는 표준표현
+
+* yaml
+ - JSON을 업글 시킴. 데이터 통신에는 안쓰고, 꼭 메모장처럼 작성가능하지만, 
+    컴퓨터도 값을 쉽게 읽을수 있다.
