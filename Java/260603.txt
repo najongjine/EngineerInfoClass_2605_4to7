@@ -23,3 +23,25 @@ public class Test1 {
          * 복사받는 방법은 없습니다. */
 	}
 }
+
+
+-----------------------
+
+package itinfo_2605_4to7;
+
+public class Test1 {
+	public static void main(String[] args) {
+		String str1="aa";
+		String str2="aa";
+		String str3=new String("aa");
+		if(str1==str2) {
+			System.out.println("같아요"+str1);
+		}
+		if(str2==str3) {
+			System.out.println("또 같아요"+str2);
+		}
+		if(str1.equals(str3)) {
+			System.out.println("내용이 같아요");
+		}
+	}
+}
