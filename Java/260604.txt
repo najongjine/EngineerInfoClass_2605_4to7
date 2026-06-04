@@ -58,7 +58,6 @@ public class Test1 {
 	}
 }
 ---------------------
-
 package itinfo_2605_4to7;
 
 import java.util.ArrayList;
@@ -67,13 +66,15 @@ import java.util.Random;
 
 class Animal {
     String name;
-    Animal(){System.out.println("부모탄생");}
+    /* 상속관계에서는 무조건 부모가 먼저 태어 나야해요 */
+    Animal(int a){System.out.println("부모탄생");}
     void sound() {
         System.out.println("sound");
     }
 }
 class Dog extends Animal {
 	Dog(){
+		super(0);
 		System.out.println("자식탄생");
 	}
     void run() {
@@ -90,3 +91,4 @@ public class Test1 {
         d.run();
 	}
 }
+
