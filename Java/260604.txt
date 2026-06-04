@@ -213,7 +213,10 @@ import java.util.List;
 import java.util.Random;
 
 class A {
-    String f(int x) {
+	int v=1;
+	A(){}
+	A(int v){this.v=v;}
+    String f(int x) { 
         return "hi";
     }
     
@@ -223,11 +226,14 @@ class A {
 }
  
 class B extends A {
-    String f(int x) {
+	B(){
+		super(3);
+	}
+    String f(int x) { 
         return "hello";
     }
     
-    String f(String x) {
+    String f(String x) { 
         return "30";
     }
 }
@@ -235,5 +241,6 @@ public class Test1 {
 	public static void main(String[] args) {
 		A a = new B();
         System.out.println(a.g());
+        System.out.println(a.v);
 	}
 }
