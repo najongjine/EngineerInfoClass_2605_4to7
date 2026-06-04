@@ -10,3 +10,35 @@ p161
 * yaml
  - JSON을 업글 시킴. 데이터 통신에는 안쓰고, 꼭 메모장처럼 작성가능하지만, 
     컴퓨터도 값을 쉽게 읽을수 있다.
+
+p169
+* EAI(Enterprise Application Integration)
+ - 카카오, 네이버, 구글같은 대기업은 서비스나 제품이 드럽게 많아요
+   서비스가 1000개 있다고치면, 일일히 다 연결해주면 가진 1000*1000-1000 의 경우가 나와요
+   그럴때 여러 서비스는 하나로 합치는 환경이다 라고 생각해주세요
+* point to point
+ - application 간 직접연결
+* Hub & Spoke(EAI)
+ - 중앙서버1대 + 여러 application들. 서버를 허브라고도 부름.
+* Message Bus(ESB: Enterprise Service Bus)
+ - publish(발행)/Subscribe(구독)
+ - 버스라는 대형 서버가 있어요(서버는 하나일수도 있고, 100개일수도 있어요)
+   서버를 미들웨어라고도 불러요
+   이곳에 데이터를 던지고, 데이터 가져가고해요
+* EAI/ESB(Hybrid)
+ - ESB + hub n spoke 를 합친 기술
+
+p181
+* DRM(Digital Rights Management): 저작권 보호 기술
+ - 컨텐츠 제공자: 컨텐츠를 만들고 제공하는 사람.
+ - 컨텐츠 분배자: 컨텐츠를 제공해주는 플랫폼(google play store, steam)
+ - Packager: 콘텐츠를 암호화해서 DRM 적용
+ - 보안컨테이너: 원본을 안전하게 보호하고있는 장치
+ - DRM controller: 이용 권한 확인 후 실행 허용. 감시자 직원.
+                  예:Steam 클라이언트가 게임 실행 권한 확인
+ - Clearing House: 결제/권한/라이선스 관리. 영수증 발급하는놈.
+                   키, 라이선스 발급 관리.
+                  예:“이 사람이 구매했나?” 확인하는 서버
+   
+ -Clearing House는 권한을 “관리”하고, DRM Controller는 사용을 “통제”한다.
+
