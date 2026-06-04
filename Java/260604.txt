@@ -165,3 +165,41 @@ public class Test1 {
         int z1=(int)3.131313131;
 	}
 }
+------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Animal {
+    String name="네발짐승";
+    void attack(){
+    	System.out.println("할퀴기");
+    }
+    int getChildA() {
+    	return getChildA();
+    }
+}
+class Dog extends Animal {
+	String name="개";
+	int a;
+	int b;
+	/* override(덮어쓰기) 조건:
+	 * 상속 관계여야 한다
+	 * new를 자식으로 해야한다 
+	 * 부모함수 이름+매개변수와 자식함수 이름+매개변수가 똑같아야 한다.*/
+	void attack(){
+    	System.out.println("물기");
+    }
+	int getChildA() {return a;}
+
+}
+public class Test1 {
+	public static void main(String[] args) {
+		/* 필드는 부모꺼, method는 자식꺼 확인 */
+		Animal ad=new Dog();
+        System.out.println(ad.getChildA());
+	}
+}
