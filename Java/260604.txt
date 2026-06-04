@@ -57,3 +57,36 @@ public class Test1 {
 		}
 	}
 }
+---------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Animal {
+    String name;
+    Animal(){System.out.println("부모탄생");}
+    void sound() {
+        System.out.println("sound");
+    }
+}
+class Dog extends Animal {
+	Dog(){
+		System.out.println("자식탄생");
+	}
+    void run() {
+        System.out.println("run");
+    }
+}
+
+class Car extends Dog{
+	
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Dog d = new Dog(); 
+        d.run();
+	}
+}
