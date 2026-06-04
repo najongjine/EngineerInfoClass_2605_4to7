@@ -25,3 +25,35 @@ public class Test1 {
 		if(bfound)System.out.println("있어요");
 	}
 }
+
+----------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class A{
+	int val;
+	A(int v){
+		val=v;
+	}
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		List<A> plist= new ArrayList<A>();
+		A a1=new A(11);
+		A a2=new A(12);
+		a2.val=13;
+		A a3=a1;
+		plist.add(a1);
+		plist.add(a2);
+		plist.add(a3);
+		plist.set(1, a3);
+		for (A a : plist) {
+			System.out.println(a.val);
+		}
+	}
+}
