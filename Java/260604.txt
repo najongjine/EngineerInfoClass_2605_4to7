@@ -203,3 +203,37 @@ public class Test1 {
         System.out.println(ad.getChildA());
 	}
 }
+
+------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class A {
+    String f(int x) {
+        return "hi";
+    }
+    
+    String g() {
+        return f(2); 
+    }
+}
+ 
+class B extends A {
+    String f(int x) {
+        return "hello";
+    }
+    
+    String f(String x) {
+        return "30";
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		A a = new B();
+        System.out.println(a.g());
+	}
+}
