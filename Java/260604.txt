@@ -92,3 +92,35 @@ public class Test1 {
 	}
 }
 
+----------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Animal {
+    String name;
+    void attack(){
+    	System.out.println("할퀴기");
+    }
+
+}
+class Dog extends Animal {
+	String name;
+	void attack(){
+    	System.out.println("물기");
+    }
+
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Animal a=new Animal();
+		Dog d = new Dog();
+		Animal ad=new Dog();
+		a.attack();
+        d.attack();
+        ad.attack();
+	}
+}
