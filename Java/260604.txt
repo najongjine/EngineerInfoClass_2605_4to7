@@ -124,3 +124,44 @@ public class Test1 {
         ad.attack();
 	}
 }
+
+----------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Animal {
+    String name="네발짐승";
+    void attack(){
+    	System.out.println("할퀴기");
+    }
+
+}
+class Dog extends Animal {
+	String name="개";
+	/* override(덮어쓰기) 조건:
+	 * 상속 관계여야 한다
+	 * new를 자식으로 해야한다 
+	 * 부모함수 이름+매개변수와 자식함수 이름+매개변수가 똑같아야 한다.*/
+	void attack(){
+    	System.out.println("물기");
+    }
+
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Animal a=new Animal();
+		Dog d = new Dog();
+		
+		// upcasting. 타입은 부모로 두고, new는 자식으로 함
+		Animal ad=new Dog();
+		
+        ad.attack();
+        System.out.println(ad.name);
+        
+        int z1=(int)3.131313131;
+	}
+}
