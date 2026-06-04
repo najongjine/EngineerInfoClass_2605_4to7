@@ -1,0 +1,27 @@
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+
+public class Test1 {
+	public static void main(String[] args) {
+		List<Integer> plist= new ArrayList<Integer>();
+		for(int i=0;i<100;i++) {
+			Random random = new Random();
+			int randNum=random.nextInt(9999);
+			plist.add(randNum);
+		}
+		int mynum=357;
+		boolean bfound=false;
+		/* plist 리스트에 mynum에 있는 숫자가 있는지 없는지 판별하는
+		 * 알고리즘을 만들어 주세요 */
+		for (Integer num : plist) {
+			if(mynum==(int)num) {
+				bfound=true;
+			}
+		}
+		if(bfound)System.out.println("있어요");
+	}
+}
