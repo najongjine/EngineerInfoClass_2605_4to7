@@ -75,6 +75,8 @@ import java.util.List;
 import java.util.Random;
 
 class Counter {
+	/* static 변수는 더이상 설계도가 아니고,
+	 * 프로그램 시작전에 이미 만들어놔요 */
     static int total = 0;
     int count = 0;
 
@@ -85,6 +87,7 @@ class Counter {
 }
 public class Test1 {
 	public static void main(String[] args) {
+		Counter.total=0;
 		Counter a = new Counter();
         Counter b = new Counter();
         Counter c = new Counter();
