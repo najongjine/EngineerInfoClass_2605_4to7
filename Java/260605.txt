@@ -11,7 +11,7 @@ class A {
 	List<A> childs=new ArrayList<A>();
 }
  
-
+// tree 구조
 public class Test1 {
 	public static void main(String[] args) {
 		A a1=new A(1);
@@ -29,5 +29,39 @@ public class Test1 {
 		a3.childs.add(a7);
 		
 		System.out.println(a1.childs.get(1).childs.get(0).v);
+	}
+}
+
+---------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Parent {
+	int v=1;
+    void a() {
+        System.out.println("a"+v);
+    }
+}
+
+class Child extends Parent {
+	int v=2;
+    void b() {
+        System.out.println("b"+v);
+    }
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		 Parent p = new Child();
+		 /* instanceof := 
+		  * p 가 Child type으로 캐스팅 가능한가 체크하는 기능 */
+		 if (p instanceof Child) {
+		    Child c = (Child) p;
+		    c.b();
+		}
 	}
 }
