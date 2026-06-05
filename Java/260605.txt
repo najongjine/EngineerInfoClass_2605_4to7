@@ -1,0 +1,33 @@
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class A {
+	int v=0;
+	A(){}
+	A(int v){this.v=v;}
+	List<A> childs=new ArrayList<A>();
+}
+ 
+
+public class Test1 {
+	public static void main(String[] args) {
+		A a1=new A(1);
+		A a2=new A(2);
+		A a3=new A(3);
+		a1.childs.add(a2);
+		a1.childs.add(a3);
+		A a4=new A(4);
+		A a5=new A(5);
+		a2.childs.add(a4);
+		a2.childs.add(a5);
+		A a6=new A(4);
+		A a7=new A(5);
+		a3.childs.add(a6);
+		a3.childs.add(a7);
+		
+		
+	}
+}
