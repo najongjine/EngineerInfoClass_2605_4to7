@@ -65,3 +65,32 @@ public class Test1 {
 		}
 	}
 }
+
+--------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Counter {
+    static int total = 0;
+    int count = 0;
+
+    Counter() {
+        total++;
+        count++;
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Counter a = new Counter();
+        Counter b = new Counter();
+        Counter c = new Counter();
+
+        System.out.println(a.total);
+        System.out.println(a.count);
+        System.out.println(b.count);
+	}
+}
