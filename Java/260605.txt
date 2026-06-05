@@ -97,3 +97,27 @@ public class Test1 {
         System.out.println(b.count);
 	}
 }
+-------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class MathUtil {
+	/* static 함수도 static 변수처럼 프로그램 시작전에 이미 만들어져 있어요.
+	 * 그리고 static 함수안에서 필드를 사용하고 싶으면, 그 필드도 꼭 static 이어야 해요
+	 * 왜냐면 함수는 이미 만들어져 있는데, 변수가 준비가 안되면 모순이니깐 */
+	static int v=1;
+    static int doubleValue(int n) {
+        return n * 2+v;
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		MathUtil m = new MathUtil();
+		m.doubleValue(0);
+		System.out.println(MathUtil.doubleValue(5));
+	}
+}
