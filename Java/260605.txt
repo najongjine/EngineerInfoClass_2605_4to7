@@ -253,3 +253,70 @@ public class Test1 {
         c.call();
 	}
 }
+
+--------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Parent {
+    static String name = "Parent";
+
+    String type = "P";
+
+    static void staticMethod() {
+        System.out.print("PS ");
+    }
+
+    void method() {
+        System.out.print("PM ");
+    }
+
+    void print() {
+        System.out.print(name + type + " ");
+        staticMethod();
+        method();
+    }
+}
+
+class Child extends Parent {
+    static String name = "Child";
+
+    String type = "C";
+
+    static void staticMethod() {
+        System.out.print("CS ");
+    }
+
+    @Override
+    void method() {
+        System.out.print("CM ");
+    }
+
+    void childOnly() {
+        System.out.print("CO ");
+    }
+}
+
+
+public class Test1 {
+	public static void main(String[] args) {
+		Parent p = new Child();
+        Child c = new Child();
+
+        System.out.print(p.name + " ");
+        System.out.print(p.type + " ");
+        p.staticMethod();
+        p.method();
+        p.print();
+
+        System.out.print(c.name + " ");
+        System.out.print(c.type + " ");
+        c.staticMethod();
+        c.method();
+        c.print();
+	}
+}
