@@ -28,6 +28,6 @@ public class Test1 {
 		a3.childs.add(a6);
 		a3.childs.add(a7);
 		
-		
+		System.out.println(a1.childs.get(1).childs.get(0).v);
 	}
 }
