@@ -64,3 +64,63 @@ public class Test1 {
       a.sound();
 	}
 }
+
+----------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+abstract class Animal {
+	 int eye=2;
+	 int nose=1;
+	 int leg=4;
+	 Animal(){
+		 System.out.println("동물탄생");
+	 }
+     void sound() {
+    	 System.out.println("크르릉");
+     };
+
+     abstract void eat();
+}
+/* 자식은 상속 받을때랑 똑같이 작동해요 */
+class Dog extends Animal{
+	Dog(){
+		System.out.println("개 탄생");
+	}
+	void sound() {
+		System.out.println("멍멍");
+	}
+	void eat() {
+		System.out.println("큰거도 이빨로 씹어 먹어요");
+	}
+}
+class Cat extends Animal{
+	void sound() {
+		System.out.println("야옹");
+	}
+	void eat() {
+		System.out.println("작은음식 이빨로 씹어 먹어요");
+	}
+}
+class Snake extends Animal{
+	int leg=0;
+	int nose=0;
+	void sound() {
+		System.out.println("...");
+	}
+	void eat() {
+		System.out.println("삼켜요");
+	}
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		Animal a1=new Dog();
+		Animal a2=new Cat();
+		Animal a3=new Snake();
+	}
+}
