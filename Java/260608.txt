@@ -119,8 +119,58 @@ class Snake extends Animal{
 
 public class Test1 {
 	public static void main(String[] args) {
+		/* 다형성을 적용하면
+		 * new는 다르게 한 놈들이라도 타입이 같으니
+		 * list에 넣을수 있다. */
+		List<Animal> alist=new ArrayList<>();
+		
 		Animal a1=new Dog();
 		Animal a2=new Cat();
 		Animal a3=new Snake();
+		alist.add(a3);
+		/* 다형성
+		 * - 사용하는 코드는 같지만, 결과나 기능은 다 다르게 작동함 */
+		a1.sound();
+		a2.sound();
+		a3.sound();
+	}
+}
+
+--------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+class Device {
+    String name;
+
+    Device(String name) {
+        this.name = name;
+    }
+
+    void info() {
+        System.out.println(name);
+    }
+}
+interface Chargeable {
+    void charge();
+}
+class Phone extends Device implements Chargeable {
+    Phone(String name) {
+        super(name);
+    }
+
+    public void charge() {
+        System.out.println(name + ":charge");
+    }
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		Phone p = new Phone("Phone");
+        p.info();
+        p.charge();
 	}
 }
