@@ -25,3 +25,42 @@ public class Test1 {
       a.sound();
 	}
 }
+
+---------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/* 추상클래스를 굳이 왜 만들었냐?
+ * 상속을 많이 쓰게 하려고
+ * 왜 상속을 만들었냐?
+ * 공통된 속성이나 함수 여기다가 적어서 중복같은거 줄이려고 */
+abstract class Animal {
+	int a=1;
+     void sound() {
+    	 System.out.println("크르릉");
+     };
+     /* abstract function 
+      * - 만들다 만 함수처럼 생김.
+      * 자식쪽에서 override 해서 구채화 해줘야함 */
+     abstract void attack();
+}
+/* 자식은 상속 받을때랑 똑같이 작동해요 */
+class Dog extends Animal{
+	@Override
+	void attack() {
+		System.out.println("물기");
+		
+	}
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		Dog a=new Dog();
+      System.out.println(a.a);
+      a.sound();
+	}
+}
