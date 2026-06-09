@@ -30,3 +30,27 @@ public class Test1 {
 		 }
 	}
 }
+
+-----------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/* 사용자가 만든 자료형
+ * 꼭 단어를 쓰는것같이 가독성이 높아지고, 또 정한값만 가질수 있어서
+ * 통일성이 있음 */
+enum Color{
+	RED, GREEN, BLUE
+}
+public class Test1 {
+	public static void main(String[] args) {
+		// colors=[RED,GREEN,BLUE]
+		Color[] colors = Color.values();
+		for (int i = 0; i < colors.length; i++) {
+            System.out.println(colors[i]);
+        }
+	}
+}
