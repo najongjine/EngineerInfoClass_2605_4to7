@@ -193,3 +193,36 @@ public class Test1 {
         System.out.print(t.code());
 	}
 }
+
+-----------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+enum Tri {
+    A("A3543635"), B("B4343"), C("C12121");
+ 
+    private String code;
+ 
+    Tri(String code) {
+        this.code = code;
+    }
+ 
+    public String code() {
+        return code;
+    }
+}
+ 
+public class Test1 {
+	public static void main(String[] args) {
+		// [  A("A"), B("B"), C("C")]
+		// t= B("B")
+		Tri t = Tri.values()[1];
+        System.out.print(t.code());// B4343
+        System.out.print(t.B.name());// B
+        System.out.print(t.B);// B
+	}
+}
