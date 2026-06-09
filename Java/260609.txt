@@ -164,3 +164,32 @@ public class Test1 {
         System.out.println(f.ordinal());
 	}
 }
+
+------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+enum Tri {
+    A("A"), B("B"), C("C");
+ 
+    private String code;
+ 
+    Tri(String code) {
+        this.code = code;
+    }
+ 
+    public String code() {
+        return code;
+    }
+}
+ 
+public class Test1 {
+	public static void main(String[] args) {
+		Tri t = Tri.values()[1];
+        System.out.print(t.code());
+	}
+}
