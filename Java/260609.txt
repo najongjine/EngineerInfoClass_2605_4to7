@@ -112,3 +112,33 @@ public class Test1 {
         System.out.println(Level.HIGH.score);
 	}
 }
+
+-----------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+enum Size {
+    SMALL(10),
+    LARGE(20);
+
+	// 접근자 private을 붙이면 외부에서(main, 타 클래스든) 접근이 안되요
+    private int price;
+
+    Size(int price) {
+        this.price = price;
+    }
+
+    // private 변수에 접근할려고 getMethod 라는걸 만들어줘야해요
+    int getPrice() {
+        return price;
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		System.out.println(Size.LARGE.getPrice());
+	}
+}
