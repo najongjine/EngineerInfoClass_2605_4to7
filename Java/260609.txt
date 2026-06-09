@@ -1,0 +1,32 @@
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/* 사용자가 만든 자료형
+ * 꼭 단어를 쓰는것같이 가독성이 높아지고, 또 정한값만 가질수 있어서
+ * 통일성이 있음 */
+enum OrderStatus{
+	READY, SHIPPED, CANCLE
+}
+public class Test1 {
+	public static void main(String[] args) {
+		// 단순 숫자로 상태를 표현하면 햇갈림
+		 int nstatus=3;
+		 // enum으로 상태를 표현하면 가동성이 좋음
+		 OrderStatus status=OrderStatus.READY;
+		 if(status==OrderStatus.READY) {
+			 System.out.println("주문 완료");
+		 }
+		 else if(status==OrderStatus.SHIPPED) {
+			 System.out.println("배송 완료");
+		 }
+		 if(nstatus==0) {
+			 System.out.println("준비중");
+		 }
+		 if(nstatus==5) {
+			 System.out.println("취소");
+		 }
+	}
+}
