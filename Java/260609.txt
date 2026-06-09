@@ -142,3 +142,25 @@ public class Test1 {
 		System.out.println(Size.LARGE.getPrice());
 	}
 }
+
+--------------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+enum Fruit {
+    APPLE, BANANA, ORANGE
+}
+
+public class Test1 {
+	public static void main(String[] args) {
+		Fruit f = Fruit.APPLE;
+		// ENUM 값의 자체 이름
+        System.out.println(f.name());
+        // ENUM 값을 내부적으로 무슨숫자로 처리했니
+        System.out.println(f.ordinal());
+	}
+}
