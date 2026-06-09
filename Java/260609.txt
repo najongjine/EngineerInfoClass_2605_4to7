@@ -252,3 +252,30 @@ public class Test1 {
         w.start();
 	}
 }
+
+--------------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/* extends Thread 하면 다른클래스를 상속 못받아요
+ * 그래서 multi threading 구현할땐 Runnable을 상속 받아요 */
+class Task implements Runnable {
+	/* 얘도 run을 오바라이드해서 여기에 내가 원하는 기능 적어요 */
+	@Override
+    public void run() {
+        System.out.println("task");
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		/* 이건 Runnable 상속받은놈을 multithreading 으로
+		 * 돌리는 고정된 방법이에요 */
+        Task task = new Task();
+        Thread t = new Thread(task);
+        t.start();
+	}
+}
