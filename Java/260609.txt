@@ -302,3 +302,33 @@ public class Test1 {
 		
 	}
 }
+
+--------------------.
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+public class Test1 {
+	public static void main(String[] args) {
+		int []arr= {1,2,3};
+		try {
+			//System.out.println(1/0);
+			//System.out.println(Integer.parseInt("hi"));
+			//System.out.println(arr[9999]);
+			 String str = null;
+	         System.out.println(str.length());
+		} catch (ArithmeticException e) {
+			System.out.println("수학에러");
+		}catch(NumberFormatException e) {
+			System.out.println("문자열을 숫자로 바꿀때 터지는 에러");
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("배열 인덱스번호 안맞음");
+		}
+		catch(Exception e) {
+			System.out.println("나도 모르는 에러");
+		}
+		
+	}
+}
