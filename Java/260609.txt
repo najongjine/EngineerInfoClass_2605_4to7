@@ -54,3 +54,32 @@ public class Test1 {
         }
 	}
 }
+
+---------------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/* 이 예제는 ENUM을 이악물고 숫자로 보고싶다 할때 쓰는 방법 */
+enum Level {
+    LOW(1), // ENUM값에 숫자값을 정해줌
+    MIDDLE(2),
+    HIGH(3);
+
+    int score; // 숫자를 담을 변수
+
+ // ENUM 옆에 있는 값을 스스로 가져가서 score에 셋팅하는 생성자
+    Level(int score) { 
+        this.score = score;
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		/* 그럼 사용할때 자동으로 생성자에 숫자 넘겨서 score에 셋팅함 */
+		System.out.println(Level.LOW.score);
+        System.out.println(Level.HIGH.score);
+	}
+}
