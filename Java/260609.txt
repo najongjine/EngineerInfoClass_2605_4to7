@@ -226,3 +226,29 @@ public class Test1 {
         System.out.print(t.B);// B
 	}
 }
+
+----------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/* Thread는 자바 만든사람이 만들어놓은 클래스에요
+ * Thread를 상속받으면 run method를 override 할수있게 되요
+ * run method 안에다가 내가 하고싶은거 적으면 되요 */
+class Worker extends Thread {
+	@Override
+    public void run() {
+        System.out.println("worker");
+    }
+}
+public class Test1 {
+	public static void main(String[] args) {
+		Worker w = new Worker();
+		/* override한 run method를 thread로 동시에 처리하고 싶으면 
+		 * start method로 실행해요*/
+        w.start();
+	}
+}
