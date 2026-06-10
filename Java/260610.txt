@@ -1,0 +1,22 @@
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+interface Printer {
+    void print();
+}
+public class Test1 {
+	public static void main(String[] args) {
+		/* 익명 클래스(이름이 없는 클래스)
+		 * Printer interface를 상속받고
+		 * 클래스 이름은 없이 바로 만들어지는 객체 */
+		Printer p = new Printer() {
+            public void print() {
+                System.out.println("Hello");
+            }
+        };
+        p.print();
+	}
+}
