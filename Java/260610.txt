@@ -43,3 +43,40 @@ public class Test1 {
         System.out.println(c.calc(3, 4));
 	}
 }
+
+--------------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Test1 {
+	static interface F {
+		/* throw:= 함수 실행하다 에러나면 자기를 호출한 놈한테 에러 던짐 */
+	    int apply(int x) throws Exception;
+	}
+	/* f 는 메인에서 정의한 함수 입니다. 함수 자체를 받은거에요 */
+	public static int run(F f) {
+	    try {
+	    	// 여기서 main에서 만든 함수 실행하기
+	        return f.apply(5);
+	    } catch (Exception e) {
+	        return 2;
+	    }
+	}
+	public static void main(String[] args) {
+		/* 익명 함수
+		 * 이름이 없는 함수 */
+		F f = (x) -> {
+            if (x > 2) {
+                throw new Exception();
+            }
+            return x * 1;
+        };
+        // 최종 도착지는 여기로 return 하는거
+        //                   2           6
+        System.out.print(run(f) + run((int n) -> n + 1));
+	}
+}
