@@ -20,3 +20,26 @@ public class Test1 {
         p.print();
 	}
 }
+
+------------------------------
+
+package itinfo_2605_4to7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+interface Calculator {
+    int calc(int a, int b);
+}
+public class Test1 {
+	public static void main(String[] args) {
+		/* class 만들고, implement 하고
+		 * override 하고 new 하는 코드
+		 * 다 생략하고, 바로 인터페이스 기반의 객체 만들고
+		 * 함수 정의함. 수많은 과정이 생략된거
+		 * 매개변수 int a,int b 받고 a+b 결과를 리턴 */
+		Calculator c = (a, b) -> a + b;
+        System.out.println(c.calc(3, 4));
+	}
+}
