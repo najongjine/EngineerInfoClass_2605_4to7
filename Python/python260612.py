@@ -69,3 +69,31 @@ for i in range(len(a)):
 #print(b)
 #print(c)
 
+"""
+파이썬 리스트에 원소 10개를 랜덤정수로 채운다.
+리스트안에 prime number가 몇개인지 알아내는 알고리즘을 만드시오
+1보다 크고, 1과 자기 자신으로만 나누어떨어지는 수
+예: 2,3,5,7,11,13,17...
+"""
+import random
+arr1=[]
+for a in range(0,10):
+    arr1.append(random.randint(1,99999))
+print(arr1)
+#arr1=[3,5,7]
+count =0
+for element in arr1:
+    bprime=True
+    if element==2:
+        count+=1
+        continue
+    else:
+        for check_num in range(2,element):
+            if element % check_num ==0:
+                bprime=False
+    if bprime:
+        count+=1
+print(count)
+    
+
+
