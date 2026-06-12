@@ -41,4 +41,31 @@ def f2():
 
 f()
 f2()
-print(x)
+#print(x)
+
+
+def fact(n):
+    if n == 1:
+        return 1
+    return n * fact(n - 1)
+
+#print(fact(4))
+
+
+a = [1, 2, 3]
+b = a # 100% 주소값 공유
+c = a[:] # 내용물 복사해서 주기. 주소가 a,b랑은 완전 다름
+
+"""
+i=0
+i=1
+i=2
+"""
+for i in range(len(a)):
+    b[i] += i
+    c[i] += b[i]
+
+#print(a)
+#print(b)
+#print(c)
+
