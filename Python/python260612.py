@@ -91,6 +91,7 @@ for element in arr1:
         for check_num in range(2,element):
             if element % check_num ==0:
                 bprime=False
+                break
     if bprime:
         count+=1
 print(count)
