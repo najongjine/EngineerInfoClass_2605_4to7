@@ -94,7 +94,13 @@ for element in arr1:
                 break
     if bprime:
         count+=1
-print(count)
+#print(count)
+
+
+def f1(x=1,b=True,c="페페"):
+    pass
+
+f1(c="모모")
     
 
 
