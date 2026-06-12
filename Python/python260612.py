@@ -11,9 +11,34 @@ map 은 forloop 라고 생각 하세요
 """
 #                            리턴값                 검사조건
 result = list(map(lambda x: len(x), filter(lambda x: len(x) >= 2, data)))
-print(result)
+#print(result)
 
 a = [1, 2, 3]
 #                     리턴값    검사조건(검사조건 없으면 그냥 패스)
 b = list(map(lambda x: x * 2, a))
-print(b)
+#print(b)
+
+
+
+x = 10
+def f():
+    """
+    global은 주로 함수 안에서 쓰는 키워드다.
+
+    이 함수 안에서 x라는 이름을 사용할 때,
+    새 지역변수 x를 만들지 말고
+    바깥에 있는 전역변수 x를 사용하겠다고 선언한다.
+
+    이 선언은 f 함수 안에서만 적용된다.
+    다른 함수에는 영향을 주지 않는다.
+    """
+    global x
+    x = 20
+
+def f2():
+    # 얘는 밖에 있는 x 값 안바꾸고 f2 scope 안에 지역변수 만듬
+    x=30
+
+f()
+f2()
+print(x)
