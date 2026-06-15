@@ -83,11 +83,9 @@ class A:
 
     def __init__(self):
         self.y = 2
-    
-
+"""
 a = A()
 b = A()
-
 a.x = 10
 b.y = 20
 
@@ -96,3 +94,22 @@ print(a.x)
 print(a.y)
 print(b.x)
 print(b.y)
+"""
+
+class Parent:
+    def __init__(self):
+        print("P")
+
+    def call(self):
+        print("Parent")
+
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        print("C")
+
+    def call(self):
+        print("Child")
+
+obj = Child()
+obj.call()
