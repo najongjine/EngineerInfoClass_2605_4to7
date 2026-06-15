@@ -13,6 +13,9 @@ class A:
         self.a=a
         self.b=b
 
+#a1=A()
+#a1.a=1
+#print(a1.a)
 
 
 class Counter:
@@ -27,11 +30,69 @@ class Counter:
 c1=Counter()
 c2=Counter()
 c3=Counter()
-print(f"c1.total:{c1.total}") # 3
+"""
+요 단계에서는
+* c1에 있는 total 필드를 찾으로감.
+* 필드가 없네? 그러면 static 공간에 있는거 갔다 써야지
+"""
+#print(f"c1.total:{c1.total}") # 3
 """
 이거 static 필드에 접근한게 아니라, 필드 하나 더 만든거에요
+c1에 total 이라는 필드 없네? 만들어야지
 """
 c1.total=1
-print(f"Counter.total:{Counter.total}") # 3
-print(f"c1.total:{c1.total}") # 1
-print(f"c3.total:{c3.total}") # 3
+#print(f"Counter.total:{Counter.total}") # 3
+#print(f"c1.total:{c1.total}") # 1
+#print(f"c3.total:{c3.total}") # 3
+
+"""
+파이썬 클래스는 오버로딩 오버라이딩 업캐스팅 그런거 없어요
+생성자도 그냥 기본적으로 하나만 실행해요
+"""
+class Animal():
+    def __init__(self):
+        self.name="동물"
+        print(f"animal init")
+    def sound(self):
+        print("크르릉")
+    def show(self):
+        print(f"name:{self.name}")
+
+class Dog(Animal):
+    def __init__(self):
+        #나는 죽어도 부모꺼 생성자 호출 하고싶다
+        #super().__init__()
+        print(f"Dog init")
+    def sound(self):
+        #나는 죽어도 부모꺼 sound 호출하고 싶다
+        #super().sound()
+        print("멍멍")
+
+class Cat(Animal):
+    def sound(self):
+        print("야옹")
+
+arr1=[Dog(),Cat()]
+for e in arr1:
+    #e.sound()
+    pass
+
+
+class A:
+    x = 1
+
+    def __init__(self):
+        self.y = 2
+    
+
+a = A()
+b = A()
+
+a.x = 10
+b.y = 20
+
+print(A.x)
+print(a.x)
+print(a.y)
+print(b.x)
+print(b.y)
