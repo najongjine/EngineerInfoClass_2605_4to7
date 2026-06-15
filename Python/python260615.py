@@ -27,7 +27,11 @@ class Counter:
 c1=Counter()
 c2=Counter()
 c3=Counter()
-
+print(f"c1.total:{c1.total}") # 3
+"""
+이거 static 필드에 접근한게 아니라, 필드 하나 더 만든거에요
+"""
 c1.total=1
 print(f"Counter.total:{Counter.total}") # 3
 print(f"c1.total:{c1.total}") # 1
+print(f"c3.total:{c3.total}") # 3
