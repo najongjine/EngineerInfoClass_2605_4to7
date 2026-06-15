@@ -117,9 +117,9 @@ obj.call()
 """
 
 
-a = {1, 1, 1}
-a.add(2)
-a.add(2)
-a.remove(1)
-a.update({4,5,6})
-print(a)
+a = "hello word"
+b = a[:3]
+c = a[5:6]
+d = a[-3:]
+e=b+c+d
+print(e)
