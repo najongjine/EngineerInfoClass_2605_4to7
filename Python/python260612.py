@@ -80,7 +80,7 @@ arr1=[]
 for a in range(0,10):
     arr1.append(random.randint(1,99999))
 print(arr1)
-#arr1=[3,5,7]
+#arr1=[3,6,7]
 count =0
 for element in arr1:
     bprime=True
