@@ -105,11 +105,21 @@ class Parent:
 
 class Child(Parent):
     def __init__(self):
-        super().__init__()
+        #super().__init__()
         print("C")
 
     def call(self):
         print("Child")
 
-obj = Child()
+"""
+obj = Parent()
 obj.call()
+"""
+
+
+a = {1, 1, 1}
+a.add(2)
+a.add(2)
+a.remove(1)
+a.update({4,5,6})
+print(a)
