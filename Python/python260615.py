@@ -4,18 +4,30 @@
 즉 주소값으로 보여 준다고요
 """
 class A:
-    pass
+    # class 변수. 자바의 static 변수
+    share=5
+    # 파이썬 클래스 메소드들은 self 필수
+    def __init__(self,a=1,b=3):
+        print("A class init")
+        # 필드 추가
+        self.a=a
+        self.b=b
 
-a1=A()
-a2=A()
 
-print(f"a1:{a1}")
-print(f"a2:{a2}")
-print(a1==a2) # false
 
-a1=[1,2,3]
-a2=[1,2,3]
-a3=a1
-a1[0]=99
-a4=a1[:]
-print(a1==a2) # true
+class Counter:
+    # 공용. 단 하나만 존재.
+    total = 0
+
+    def __init__(self):
+        Counter.total += 1
+        # 필드. 각 heap 영역에 각각 존재
+        self.count = 1
+
+c1=Counter()
+c2=Counter()
+c3=Counter()
+
+c1.total=1
+print(f"Counter.total:{Counter.total}") # 3
+print(f"c1.total:{c1.total}") # 1
