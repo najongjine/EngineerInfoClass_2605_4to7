@@ -1,0 +1,29 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Node {
+	int v;
+	struct Node* next;
+}Node;
+
+int main(int argc, char const* argv[])
+{
+	Node* n1 = (Node*)malloc(sizeof(Node));
+	Node* n2 = (Node*)malloc(sizeof(Node));
+	Node* n3 = (Node*)malloc(sizeof(Node));
+	Node* n4 = (Node*)malloc(sizeof(Node));
+	Node* n5 = (Node*)malloc(sizeof(Node));
+	n1->v = 1;
+	n2->v = 2;
+	n3->v = 3;
+	n4->v = 4;
+	n5->v = 5;
+
+	n1->next = &n2;
+	n2->next = &n3;
+	n3->next = &n5;
+	n4->next = NULL;
+	n5->next = &n4;
+	Node* head = &n1;
+	/* head 에서 시작해서 next 타고가면서 v 값 출력하기 */
+}
