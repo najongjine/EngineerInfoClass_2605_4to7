@@ -1,2 +1,5 @@
 https://wildojisan.tistory.com/127
 - DCL
+(하나 빠진거
+ 인덱스를 만들땐 
+ CREATE INDEX myindex ON mytable (my column))
