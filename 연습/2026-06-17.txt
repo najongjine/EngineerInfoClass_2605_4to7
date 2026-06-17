@@ -1,0 +1,49 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+/* a와 b의 값을 바꾸는 stamp 결합도 함수 */
+void swap(int* a, int* b) {
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+void fillRandom(int* arr, int size) {
+	for (int i = 0; i < size;i++) {
+		*(arr + i) = rand() % 1000 + 1;
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+}
+void quickSort(int arr[], int left, int right) {
+	int i = left;
+	int j = right;
+	int pivot = arr[(left + right) / 2];
+	while (i<=j) {
+		while (arr[i] < pivot) {
+			i++;
+		}
+		while (arr[j]>pivot) {
+			j--;
+		}
+		if (i<=j) {
+			swap(&arr[i], &arr[j]);
+			i++;
+			j--;
+		}
+	}
+	if (left<j) {
+		quickSort(arr, left, j);
+	}
+	if (i<right) {
+		quickSort(arr, i, right);
+	}
+}
+int main()
+{
+	int arr[10];
+	srand(time(NULL));
+	fillRandom(arr, 10);
+
+	return 0;
+}
