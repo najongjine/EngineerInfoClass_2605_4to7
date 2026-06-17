@@ -1,0 +1,32 @@
+DROP TABLE t_user;
+
+CREATE TABLE t_user(
+ id SERIAL PRIMARY KEY,
+ name VARCHAR,
+ phone VARCHAR UNIQUE,
+ created_dt TIMESTAMPTZ DEFAULT now()
+);
+
+DROP TABLE t_board;
+CREATE TABLE t_board(
+id SERIAL PRIMARY KEY,
+title VARCHAR NOT NULL,
+content VARCHAR,
+created_dt TIMESTAMPTZ DEFAULT now(),
+user_id INT
+);
+
+
+
+ALTER TABLE t_user
+ADD COLUMN gender VARCHAR 
+CHECK(gender IN ('m','f','n'));
+
+ALTER TABLE t_board
+ALTER COLUMN title SET NOT NULL;
+
+ALTER TABLE t_user
+RENAME COLUMN phone TO phone_no;
+
+ALTER TABLE t_board
+ALTER COLUMN content TYPE TEXT;
