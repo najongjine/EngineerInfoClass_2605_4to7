@@ -1,0 +1,39 @@
+DROP TABLE t_user;
+
+CREATE TABLE t_user(
+ id SERIAL PRIMARY KEY,
+ name VARCHAR,
+ phone VARCHAR UNIQUE,
+ created_dt TIMESTAMPTZ DEFAULT now()
+);
+
+DROP TABLE t_board;
+CREATE TABLE t_board(
+id SERIAL PRIMARY KEY,
+title VARCHAR NOT NULL,
+content VARCHAR,
+created_dt TIMESTAMPTZ DEFAULT now(),
+user_id INT,
+
+CONSTRAINT fk_board_userid
+FOREIGN KEY (user_id)
+REFERENCES t_user(id)
+ON  DELETE CASCADE
+ON  UPDATE CASCADE
+);
+
+ALTER TABLE t_board
+ADD COLUMN user_id INT;
+
+ALTER TABLE t_board
+ADD CONSTRAINT fk_board_userid
+FOREIGN KEY (user_id)
+REFERENCES t_user(id)
+ON  DELETE CASCADE
+ON  UPDATE CASCADE;
+
+ALTER TABLE t_board
+DROP CONSTRAINT fk_board_userid;
+
+INSERT INTO t_board(title)
+VALUES('ㅎㅇ');
