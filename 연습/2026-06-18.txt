@@ -1,0 +1,66 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+typedef struct Node {
+	int data;
+	struct Node* left;
+	struct Node* right;
+}Node;
+Node* createNode(int data) {
+	Node* newNode = (Node*)malloc(sizeof(Node));
+	newNode->data = data;
+	newNode->left = NULL;
+	newNode->right = NULL;
+	return newNode;
+}
+Node* insert(Node* root, int data) {
+	if (!root) {
+		return createNode(data);
+	}
+	if (data < root->data) {
+		root->left = insert(root->left, data);
+	}
+	else if (data>root->data) {
+		root->right = insert(root->right, data);
+	}
+	return root;
+}
+/* a와 b의 값을 바꾸는 stamp 결합도 함수 */
+void swap(int* a, int* b) {
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+void fillRandom(int* arr, int size) {
+	for (int i = 0; i < size;i++) {
+		*(arr + i) = rand() % 1000 + 1;
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+}
+void inorder(Node* root) {
+	if (!root) {
+		return;
+	}
+	inorder(root->left);
+	printf("%d ", root->data);
+	inorder(root->right);
+}
+int main()
+{
+	int n;
+	int arr[10];
+	srand(time(NULL));
+	fillRandom(arr, 10);
+
+	Node* root = NULL;
+	for (int i = 0; i < 10; i++) {
+		root = insert(root, arr[i]);
+	}
+	inorder(root);
+
+
+	return 0;
+}
