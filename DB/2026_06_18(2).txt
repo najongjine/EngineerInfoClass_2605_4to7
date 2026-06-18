@@ -1,0 +1,53 @@
+INSERT INTO t_user(name,phone)
+VALUES('pepe','010-113');
+
+INSERT INTO t_board(title,content,user_id)
+VALUES('ㅎㅇ','ㅋㅋ',2);
+
+INSERT INTO t_board(title,content,user_id)
+VALUES('ㅎㅇ','ㅋㅋ',(SELECT id FROM t_user WHERE name='pepe'));
+
+UPDATE t_user
+SET name='joojoo'
+WHERE id=2
+;
+
+DELETE FROM t_user
+WHERE id=1
+;
+
+SELECT
+*
+FROM t_user;
+
+SELECT
+id,
+name
+FROM t_user;
+
+
+ALTER TABLE t_board
+ADD COLUMN likecnt INT DEFAULT 0;
+
+UPDATE t_board
+SET likecnt = likecnt + 10
+WHERE id > 2
+;
+
+
+SELECT
+id,
+title,
+user_id,
+likecnt AS "좋아요받은수"
+FROM t_board AS b
+WHERE likecnt BETWEEN 1 AND 100
+;
+
+SELECT
+*
+FROM t_user
+WHERE id=6;
+
+
+
