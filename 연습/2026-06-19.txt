@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int makeRandom(int size) {
+int makeRandom() {
 	int randnum=rand() % 10 + 1;
 	return randnum;
 }
@@ -17,6 +17,7 @@ int main()
 		중복된 데이터면 넣지 않기 
 		마지막엔 원소의 끝이란걸 표현하기위해 -1을 넣죠
 		*/
+		int randnum = makeRandom();
 	}
 
 
