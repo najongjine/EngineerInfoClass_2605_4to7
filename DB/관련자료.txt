@@ -3,3 +3,7 @@ https://wildojisan.tistory.com/127
 (하나 빠진거
  인덱스를 만들땐 
  CREATE INDEX myindex ON mytable (my column))
+
+
+postgresql://neondb_owner:npg_UxPTaulwgc09@ep-cool-river-ainhkgrr-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require
+- 공유 클라우드 DB
