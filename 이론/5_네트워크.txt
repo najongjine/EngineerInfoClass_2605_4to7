@@ -172,4 +172,25 @@ p420
     CDM
     A, B, C가 같은 시간과 같은 주파수를 사용
     단, 각각 다른 코드 사용
+
+* 파장 분할 다중화(WDM, Wavelength Division Multiplexing)
+ - 광섬유에서 서로 다른 파장의 광신호를 하나의 회선으로 동시에 전송하는 다중화 방식
+ - 빨간빛 → 사용자 A 데이터
+  초록빛 → 사용자 B 데이터
+  파란빛 → 사용자 C 데이터
+  이 빛들을 한 광섬유에 합쳐서 동시에 전송
  
+
+p421
+* 집중화기(Concentrator)
+ - 하나의 전송 회선을 하나의 단멀기가 독점하여 사용
+ - 나머지들은 버퍼에서 대기
+* CSMA(Carrier Sense Multiple Access)
+ - 긍정 응답을 기다리지 않고 사용중인 채널에 일전한 규칙을 통하여 접근하는 방식
+* CSMA/CD(Collision Detection)
+ - CSMA 방식에 충돌 검출 기능과 재전송 기능 추가
+ - 유선 LAN, Ethernet에서 사용
+* CSMA/CA(collision avoidance)
+ - 먼저 통신 채널이 사용 중인지 확인하고, 비어 있으면 잠시 기다린 뒤 전송하여 충돌을 최대한 피하는 방식
+ - 무선, WIFI
+ - Carrier Sense(반송파 감지) 기술이 회선 사용중인지 아닌지 알아 낸다고함
