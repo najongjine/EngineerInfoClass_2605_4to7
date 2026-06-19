@@ -12,12 +12,26 @@ int main()
 	int arr[10];
 	int i = 0;
 	srand(time(NULL));
+	for (int a = 0; a < 10;a++) {
+		arr[a] = -1;
+	}
 	for (; i < 10;i++) {
 		/* makeRandom 을 이용해서 arr에 데이터 넣는데,
 		중복된 데이터면 넣지 않기 
 		마지막엔 원소의 끝이란걸 표현하기위해 -1을 넣죠
 		*/
 		int randnum = makeRandom();
+		int bduplicate = 0;
+		for (int a = 0; a < 10;a++) {
+			if (arr[a]==randnum) {
+				bduplicate=1;
+			}
+		}
+		if (bduplicate) continue;
+		arr[i] = randnum;
+	}
+	for (int a = 0; a < 10; a++) {
+		printf("%d ", arr[a]);
 	}
 
 
