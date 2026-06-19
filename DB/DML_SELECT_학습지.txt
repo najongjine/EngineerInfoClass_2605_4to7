@@ -18,10 +18,10 @@ DML은 Data Manipulation Language의 줄임말이다.
 
 DML에는 보통 다음 4개가 있다.
 
-INSERT  : 데이터 넣기
-SELECT  : 데이터 조회하기
-UPDATE  : 데이터 수정하기
-DELETE  : 데이터 삭제하기
+INSERT  : 데이터 넣기   INSERT INTO  VALUES
+SELECT  : 데이터 조회하기   
+UPDATE  : 데이터 수정하기  UPDATE SET WHERE
+DELETE  : 데이터 삭제하기  DELETE FROM WHERE
 
 오늘은 이 중에서 SELECT를 집중해서 연습한다.
 
