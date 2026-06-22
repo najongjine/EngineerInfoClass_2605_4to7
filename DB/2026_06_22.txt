@@ -1,0 +1,177 @@
+CREATE TABLE t_user(
+id SERIAL PRIMARY KEY,
+username VARCHAR,
+name VARCHAR,
+email VARCHAR,
+created_dt TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE TABLE t_board(
+id SERIAL PRIMARY KEY,
+title VARCHAR,
+content TEXT,
+created_dt TIMESTAMPTZ DEFAULT now(),
+user_id INT NOT NULL,
+view_cnt INT DEFAULT 0,
+like_cnt INT DEFAULT 0,
+
+CONSTRAINT fk_tboard_userid
+FOREIGN KEY (user_id)
+REFERENCES t_user(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+CREATE TABLE t_comment(
+id SERIAL PRIMARY KEY,
+cmt VARCHAR,
+board_id INT NOT NULL,
+
+CONSTRAINT fk_comment_boardid
+FOREIGN KEY (board_id)
+REFERENCES t_board(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+SELECT
+*
+FROM t_user;
+
+INSERT INTO t_user(username,name,email)
+VALUES('멍멍이','멍멍이','멍멍@google.com');
+
+INSERT INTO t_board(title,content,user_id)
+VALUES('고양이는 더러움','고양이를 공격함',1);
+
+INSERT INTO t_comment(cmt,board_id)
+VALUES('개가 말을하네2',1);
+
+
+SELECT
+*
+FROM t_user
+WHERE name='멍멍이'; -- 완전 일치
+
+SELECT
+*
+FROM t_user
+WHERE name LIKE '%2'; -- 부분 검색
+
+SELECT
+*
+FROM t_board
+WHERE view_cnt>5 AND like_cnt>2
+;
+
+SELECT
+*
+FROM t_user
+WHERE id=1 OR id=2 OR id=9999
+;
+SELECT * FROM t_user
+WHERE id IN(1,2,9999);
+
+SELECT
+*
+FROM t_user
+WHERE id !=1 OR id <> 1 OR NOT id=1
+;
+
+SELECT
+*
+FROM t_board
+WHERE user_id SOME(
+	SELECT id FROM t_user
+);
+
+SELECT
+*
+FROM t_board 
+WHERE view_cnt > ANY (
+    SELECT view_cnt
+    FROM t_board
+    WHERE user_id = 1
+);
+
+SELECT *
+FROM t_board
+WHERE view_cnt > SOME (
+    SELECT view_cnt
+    FROM t_board
+    WHERE user_id = 1
+);
+
+SELECT *
+FROM t_board
+WHERE view_cnt > ALL (
+    SELECT view_cnt
+    FROM t_board
+    WHERE user_id = 1
+);
+
+SELECT 
+*
+FROM t_user AS u
+WHERE EXISTS (
+    SELECT 
+    1
+    FROM t_board AS b
+    WHERE b.user_id = u.id
+);
+
+-- GROUP BY 는 내부적으로 배열처리 함
+SELECT
+COUNT(user_id)
+FROM t_board
+GROUP BY user_id
+;
+
+SELECT
+user_id,
+COUNT(user_id)
+FROM t_board
+WHERE content IS NOT NULL
+GROUP BY user_id
+;
+
+SELECT 
+user_id, 
+COUNT(*)
+FROM t_board
+GROUP BY user_id
+HAVING COUNT(*) >= 2
+;
+
+SELECT
+*
+FROM t_board as b
+INNER JOIN t_user as u ON u.id = b.user_id
+;
+
+SELECT
+*
+,(SELECT name FROM t_user AS u WHERE b.user_id = u.id) AS name
+FROM t_board AS b
+;
+
+
+
+
+SELECT
+b.id,
+b.title,
+c.id,
+c.cmt
+FROM t_board AS b
+LEFT JOIN t_comment as c ON c.board_id = b.id
+ORDER BY b.id
+;
+
+SELECT
+b.id,
+b.title,
+c.id,
+c.cmt
+FROM t_board AS b, t_comment AS C
+;
