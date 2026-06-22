@@ -1,0 +1,26 @@
+package dummy;
+
+class Student{
+	String name;
+	int age;
+	int score;
+	Student(String name, int age, int score){
+		this.name=name;
+		this.age=age;
+		this.score=score;
+	}
+	void printInfo() {
+		System.out.println("name:"+name);
+		System.out.println("age:"+age);
+		System.out.println("score:"+score);
+	}
+}
+public class Test11 {	
+	public static void main(String[] args) {
+		//                           name  age  score
+		Student student=new Student("pepe",20,80);
+		// name, age, score 출력하는 함수
+		student.printInfo();
+	}
+}
+
