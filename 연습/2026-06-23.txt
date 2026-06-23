@@ -1,0 +1,21 @@
+package dummy;
+class MyMath{
+	int cntOddEven(int _arr[],String mode) {
+		if(mode.equalsIgnoreCase("odd")) {
+			
+		}else if(mode.equalsIgnoreCase("even")) {
+			
+		}else {
+			return -1;
+		}
+	}
+}
+public class Test11 {	
+	public static void main(String[] args) {
+		MyMath mymath=new MyMath();
+		int arr[]= {9,7,5,3,45,6,34,2,2,3,45};
+		int cnt=mymath.cntOddEven(arr, "even");
+		System.out.println(cnt);
+	}
+}
+
