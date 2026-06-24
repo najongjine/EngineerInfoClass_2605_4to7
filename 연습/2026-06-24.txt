@@ -1,0 +1,49 @@
+package dummy;
+
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Test11 {	
+	public static void main(String[] args) {
+		// 파이썬의 Set와 같은놈
+		Set<Integer> a = new HashSet<>();
+
+		a.add(7); // [7]
+		System.out.println(a);
+
+		a.add(5); // [5, 7]  Set는 순서 보장되지 않음
+		System.out.println(a);
+
+		a.add(5); // [5, 7]  세트는 중복 허용 안함, 순서도 보장되지 않음
+		System.out.println(a);
+
+		a.remove(5); // [7]
+		System.out.println(a);
+
+		System.out.println(a.size()); // 1
+	}
+}
+
+-----------------------------------------
+
+package dummy;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test11 {	
+	public static void main(String[] args) {
+		// mymap={}  파이썬의 dictionary랑 같은놈. 왜 같은 기능에 이름이랑 문법이 다른지는 나도 모름
+		Map<String, Integer> mymap = new HashMap<>();
+		// mymap["a"]=1
+		mymap.put("a", 1);
+		// mymap["a"]=2
+		mymap.put("a", 2);
+		// mymap["b"]=3
+		mymap.put("b", 3);
+		System.out.println("key a: "+mymap.get("a"));
+		System.out.println("key b: "+mymap.get("b"));
+	}
+}
+
