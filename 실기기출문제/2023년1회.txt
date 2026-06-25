@@ -127,3 +127,243 @@ SSH (Secure SHell)
 
  - 바이러스:  대상(정상파일)을 감염시키는 형태로 실행되며, 감염시킬 대상이 존재하지 않을 때에는 실행되지 않으며 다른정상파일로의 자기 복제 기능이 있다.
         컴퓨터 시스템에 침입해 프로그램에 기생하며 시스템을 변경하거나 사용할 수 없도록 만드는 악성코드이다.
+
+
+
+
+9. 다음 아래 코드에서 이진수를 십진수로 변환하는 코드에 대해 괄호 (a) (b)의 적합한 답을 작성하시오.
+#include <stdio.h>
+ 
+int main() {
+ 
+    int input = 101110;
+    int di = 1;
+    int sum = 0;
+ 
+    while (1) {
+ 
+        if (input == 0) break;
+        else {
+ 
+          sum = sum + (input (a)(b)) * di;
+             di = di * 2;
+             input = input / 10;
+ 
+        }
+    }
+ 
+    printf("%d", sum);
+ 
+    return 0;
+}
+
+(a) %  ,(b) 10
+
+그냥 손으로 a 는 / 나 % 대입하고 10진수 변환이니깐 b 를 10으로 하고
+input 값이 너무 커서 풀다가 세월이 가니 11같은 작은수로 임의로 변경하고 메뉴얼로 테스트 해보면 되요
+
+
+
+
+
+10. 다음 보안 관련 설명으로 괄호안에 알맞는 용어를  작성하시오.
+ICMP
+ - 네트웍에 문제가 있는지 확인하기 위한 목적으로 주로 사용된다.
+ - ping
+
+
+
+11. 다음은 디자인 패턴에 관한 설명이다. 설명에 내용에 알맞는 답을 고르시오.
+proxy
+ - “실제 객체를 호출하면 행위를 중간에 가로채서 다른 동작을 수행하는 객체로 변경한다.”
+ - 대리
+
+
+
+14. 다음 코드에서 괄호안에 알맞는 값을 변수명으로 작성하시오.
+
+package dummy;
+
+public class Test11 {	
+	public static void swap(int[] arr, int idx1, int idx2){
+        /*
+        프로그래밍에서 자리를 바꿀땐 의자 3개가 필요하다(python 제외)
+        x 자 cross 체크
+        */
+        int temp = arr[idx1];
+        arr[idx1] = arr[idx2];
+        // 여기에 변수명
+        arr[idx2] = temp;
+    }
+ 
+    public static void Usort(int[] array, int length){
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length - i - 1; j++) {
+                /*
+                왼쪽에 있는게 오른쪽에 있는것보다 크니?
+                그러면 자리 바꿔
+                */
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1);
+                }
+            }
+        }
+    }
+    
+	public static void main(String[] args) {
+		int[] item = new int[] { 5, 3, 8, 1, 2, 7 };
+        int nx = 6;   
+        // 여기에 변수명
+        Usort(item, nx);
+ 
+        for (int data : item) {
+            System.out.print(data + " ");
+        }
+	}
+}
+
+
+
+--------------------------------
+
+15. 다음 파이썬 코드의 알맞는 출력값을 작성하시오.
+
+# set 는 순서가 중요하지 않고 중복제거만 중요해요
+a = {'한국', '중국', '일본'}
+a.add('베트남')
+a.add('중국') # 이미 있으니 효과 없음
+a.remove('일본') # 일본 빼라
+a.update({'홍콩', '한국', '태국'}) # 한꺼번에 추가. 중복 제거.
+
+# {'베트남', '홍콩', '중국', '한국', '태국'}
+# set는 순서가 중요하지 않아요
+print(a)
+
+-----------------------
+
+16. 다음 성적 테이블에서 과목별 점수의 평균이 90점 이상인 '과목이름', '최소점수', '최대점수' 를 검색하고자 한다. [조건]을 참고하여 적합한 SQL문을 작성하시오.
+SELECT
+과목이름
+, MIN(점수) AS '최소점수'  // 수동으로 만들어낸 칼럼
+, MAX(점수) AS '최대점수'  // 수동으로 만들어낸 칼럼
+FROM 성적
+GROUP BY 과목이름
+HAVING AVERAGE(점수) >= 90
+;
+GROUP BY 하고나면 화면에선 하나로 보여도 내부적으론 배열처리되서 존재한다
+그룹하고나서 조건걸어서 걸러내고 싶을땐 HAVING 을 쓴다
+
+
+
+
+17. 다음  JAVA 코드에서 알맞는 출력 값을 작성하시오.
+
+package dummy;
+
+abstract class Vehicle {
+	 
+    String name; // Spark
+    abstract public String getName(String val);
+    
+    // 업캐스팅 + obj.getName() 이 코드 때문에 일단 여기로 옴.
+    // 그리고 override 체크 해야함
+    // 자식 메소드에 getName 이라는 함수들 있지만, 매개변수가 부모의 getName이랑 똑같이 되있지 않아 override 안일어남
+    public String getName() {
+            return "Vehicle name: " + name;
+    }
+}
+class Car extends Vehicle {
+ 
+    public Car(String val) {
+            name=super.name=val;
+    }
+ 
+    public String getName(String val) {
+            return "Car name:" + val;
+    }
+ 
+    public String getName(byte val[]) {
+            return "Car name:" + val;
+    }
+}
+ 
+public class Test11 {	
+	public static void main(String[] args) {
+		// 업캐스팅. 초점은 부모로 두고 시작
+		Vehicle obj = new Car("Spark");
+	    System.out.println(obj.getName());
+	}
+}
+
+------------------------------------------
+
+
+18. 다음은 스키마와 관련된 내용이다. 각 괄호안에 알맞는 답을 작성하시오.
+ - 외부 스키마:
+    사용자나 응용 프로그래머가 개인의 입장에서 필요한 데이터베이스의 논리적 구조
+    사용자
+    뷰
+ - 개념 스키마:
+    데이터베이스의 전체적인 논리적 구조
+    조직 전체의 데이터베이스
+    개체 간의 관계(Relationship)와 제약 조건을 나타내고 데이터베이스의 접근 권한, 보안 및 무결성 규칙에 관한 명세
+ - 내부 스키마:
+    물리적인 저장장치 입장
+    실제 데이터베이스에 저장될 레코드의 물리적인 구조를 정의
+    내부 레코드의 물리적 순서, 인덱스 유/무
+
+
+
+
+19. 다음 아래 제어 흐름 그래프가 분기 커버리지를 만족하기 위한 테스팅 순서를 쓰시오.
+분기 커버리지 == 결정 커버리지 (Decision Coverage)
+if 문(다이아몬드) 같은거 나오면 결과가 true 일때, false일때 한번씩만 해주면 된다.
+
+1234561, 124567  or 1234567, 124561
+
+다이어그램 true일때 false일때 한번씩 나오게끔 방문 가능한 경로 써주면 된다
+
+
+
+
+20. 다음 자바 코드에 대한 출력 값을 작성하시오.
+package dummy;
+
+class Parent {
+    int x = 100; // 500
+ 
+    Parent() {
+        this(500);
+    }
+ 
+    Parent(int x) {
+        this.x = x;
+    }
+ 
+    int getX() {
+    	// 이쪽 method의 scope에서 가장 가까운 x는 Parent에 있는 field x
+    	// 그래서 100이 return 됨
+        return x;
+    }
+}
+class Child extends Parent {
+    int x = 4000; // 5000
+    // 여기로 먼저 진입
+    // 부모 생성자 호출하는거 잊지말기
+    Child() {
+    	// super(); 이거 부모생성자 호출 안적어도 컴파일때 내부적으로 지가 만듬
+        this(5000); // 자시자신 생성자 호출
+    }
+    // 그래서 여기도 실행
+    Child(int x) {
+        this.x = x;
+    }
+}
+public class Test11 {	
+	public static void main(String[] args) {
+		 Child obj = new Child();
+	     System.out.println(obj.getX());
+	}
+}
+
+
