@@ -1,0 +1,213 @@
+
+1. 다음은 C언어 코드의 문제이다. 보기의 조건에 맞도록 괄호안에 알맞은 코드를 작성하시오.
+
+#include <stdio.h>
+int main(void) {
+    int n[5] = {5,4,3,2,1}; // 54321
+    int i;
+
+    // 43215
+    for (i = 0; i < 5; i++) {
+        printf("%d", n[(i+1)%5]);
+    }
+    return 0;
+}
+i+1 로 배열의 1번째 인덱스부터 출력 하게 하고, mod 연산으로 배열범위 벗어나지 않게 한거임
+
+-------------------
+
+
+2. 다음은 JAVA 코드 문제이다. 가지고 있는 돈이 총 4620원일 경우 1000원, 500원, 100원, 10원의 지폐 및 동전을 이용하여 보기의 조건에 맞춰 최소한의 코드를 통해 괄호안을 작성하시오.
+
+package dummy;
+
+public class Test11 {	
+	public static void main(String[] args) {
+		 int m = 4620;
+		 
+		 // 1000원 갯수만 남기기
+		 int a = m/1000;
+		 
+		 // mod 연산을 이용하면 999까지만 남게됨
+		 // 이상태에서 500을 나누면 500원 갯수 알수있음
+		 int b = (m%1000)/500;
+
+         /* 여기 원리도 비슷함.
+         %500 하면 499 까지가 최대.
+         이상태에서 100 나누면 100우너 갯수 알수 있음
+         */
+		 int c = (m%500)/100;
+		 int d = (m%100)/10;
+		 
+		 System.out.println(a); //천원짜리     4장 출력
+		 System.out.println(b); //오백원짜리  1개 출력
+		 System.out.println(c); //백원짜리     1개 출력
+		 System.out.println(d); //십원짜리     2개 출력
+	}
+}
+
+
+-----------------------
+
+3. 다음은 c언어의 코드이다. 보기의 조건에 맞추어 알맞은 출력값을 작성하시오.
+입력값은 홍길동, 김철수, 박영희 순서로 주어진다.
+
+#include <stdio.h> 
+#include <stdlib.h> 
+// 전역변수. static 변수라고 생각하면 됨
+char n[30];
+char* test() {
+    /* 뭘 추가로 입력하건, n 배열에 저장됨
+    즉 최후에 입력한게 남게됨 */
+    printf("입력하세요 :");
+    gets(n);
+    return n;
+}
+
+int main()
+
+{   
+    /* 전역변수 n이 가지고 있는 주소값 같이 가지고 있는거 뿐임 */
+    char* test1;
+    char* test2;
+    char* test3;
+
+    test1 = test();
+    test2 = test();
+    test3 = test();
+    
+    // 그래서 최종 결과는 3변수 모두 박영희로 나온다
+    printf("%s \n:", test1);
+    printf("%s \n:", test2);
+    printf("%s \n:", test3);
+}
+
+
+----------------------
+
+9. 다음은 C언어 문제이다. 알맞은 출력값을 작성하시오.
+
+#include <stdio.h>
+#define MAX_SIZE 10
+
+/* Stack 자료구조 알고리즘
+* 배열을 추적하는 index 변수 하나를 가지고 배열이 다 찼나, 배열이 아예 비어있나 다 검사함
+* 값을 넣거나 빼는곳도 index 변수 하나의 위치로 결정남
+*/
+int isWhat[MAX_SIZE];
+int point = -1;
+
+// 배열이 완전 비어있니 체크
+int isEmpty() {
+    if (point == -1) return 1; // true
+    return 0; // false
+}
+
+// 배열이 꽉 찼니 체크
+int isFull() {
+    if (point == 10) return 1;
+    return 0;
+}
+
+// 배열에 값 넣기
+void into(int num) {
+    if (point >= 10) printf("Full");
+    else isWhat[++point] = num;
+}
+
+// 배열에서 값 가져오기
+int take() {
+    if (isEmpty() == 1) printf("Empty");
+    else return isWhat[point--];
+    return 0;
+}
+
+int main(int argc, char const* argv[]) {
+    int e;
+    into(5); into(2);
+
+    // ! 이건 0을 1로, 1을 0으로 반전 시키기
+    while (!isEmpty()) {
+        printf("%d", take());
+        into(4); into(1); printf("%d", take());
+        into(3); printf("%d", take()); printf("%d", take());
+        into(6); printf("%d", take()); printf("%d", take());
+    }
+
+    return 0;
+}
+
+
+----------------
+
+
+12. 다음 내용에서 설명하는 문제에 대해 보기에 알맞는 답을 골라 작성하시오.
+
+hamming code
+ - 1 비트의 에러를 정정할 수 있는
+   Hamming에 의해 고안
+
+FEC
+ - 송신측이 전송할 문자나 프레임에 부가적 정보(Redundancy)를 첨가하여 전송하고 수신측이 이 부가적 정보를 이용하여 에러검출 및 에러정정
+
+BEC
+ - 데이터 전송 과정에서 오류가 발생하면 송신 측에 재전송을 요구하는 방식이다. 오류를 검출하는 방법은 Parity검사와 CRC, 블록 합 검사 등이 있다.
+
+
+
+
+14. 다음은 자바에 대한 문제이다. 알맞은 출력값을 작성하시오.
+public class Main{
+    public static void main(String[] args) {
+        /* 문자열은 내부적으로 힙영역 배열에 저장됨
+        처음 등장하는 문자열은 힙영역에 새로 만들고,
+        똑같은놈이 또 등장하면 재사용항
+        */
+        String str1 = 'Programming';
+        String str2 = 'Programming';
+        /* new는 무조건 heap 영역 공간에 새로 만듬 */
+        String str3 = new String('Programming');
+        
+        println(str1==str2) // true
+        println(str1==str3) // false
+        println(str1.equals(str3)) // true. 내용물 비교
+        print(str2.equals(str3)) // true. 내용물 비교
+    }
+}
+
+
+
+
+--------------------------
+
+
+16. 다음 괄호안에 알맞는 답을 작성하시오.
+
+해시 
+ - O(1)
+ - 임의의 크기를 가진 데이터(Key)를 고정된 크기의 데이터(Value)로 변화시켜 저장
+ - Dictionary, Map 은 hash 함수, hash 알고리즘으로 구현
+
+
+
+
+
+19. 다음 파이썬 코드에서 알맞는 출력값을 작성하시오.
+# 파이썬은 문자열을 배열처럼 처리할수 있음
+a = "engineer information processing"
+b = a[:3] # 0~2번째 인덱스 
+c = a[4:6] # 4~5번째 인덱스
+d = a[28:] # 28~끝 인덱스
+e=b+c+d # 문자열 타입을 + 하는건 문자열 이어 붙이기
+print(e)
+
+
+
+
+20. 다음 설명에 대한 알맞는 답을 작성하시오.
+스텁
+ - 하향식 테스트
+ - 상위 모듈은 존재하나 하위 모듈이 없는 경우의 테스트를 위해 임시 제공되는 모듈
+드라이버
+ - 상향식 테스트
+ - 상위 모듈 없이 하위 모듈이 존재할 때 하위 모듈 구동 시 자료 입출력을 제어하기 위한 제어 모듈
