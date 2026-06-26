@@ -1,0 +1,39 @@
+1. 다음은 Java 코드이다. 올바른 출력 결과를 작성하시오.
+
+package dummy;
+
+class A {
+    // 초기는 부모로 오고 override 체크
+    public void paint() {
+        System.out.print("A");
+        draw();
+    }
+    public void draw() {
+        System.out.print("B");
+        // override 
+        draw();
+    }
+}
+ 
+class B extends A {
+    // 자식에서 override 되있으니 이거 실행
+    public void paint() {
+        // 부모꺼 강제호출
+        super.draw();
+        System.out.print("C");
+        // 자기꺼 호출
+        this.draw();
+    }
+    public void draw() {
+        System.out.print("D");
+    }
+}
+public class Test11 {	
+	public static void main(String[] args) {
+        // upcasting. 포커스는 A로 맞춤
+		A b = new B();
+        b.paint();
+        b.draw();
+	}
+}
+
