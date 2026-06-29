@@ -5,10 +5,13 @@ scanf, scanner, input 얘네들은 데이터를 키보르도부터 입력 받을
 그냥 입력값 타이핑 하고 엔터치면 돌아 갈겁니다.
 """
 # x의 입력값이 "pyton 이라고 치자"
-x="python"
+x="2 3"
 x=x.capitalize()
 # 뭐뭐를 기준으로 문자열 자르는 놈.  ()안에 아무것도 없으면 공백 기준으로 문자열 자름
 # split을 수행하고 나면 무조건 배열로 리턴 되요
-y=x.split()
-print(f"x:",x, end="....")
-print(f"y:",y)
+y1,y2=x.split()    # y=x.split()
+print(f"x:",x)
+print(f"y1:{y1}, y2:{y2}")
+
+
+
