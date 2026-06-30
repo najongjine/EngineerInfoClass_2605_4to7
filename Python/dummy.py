@@ -1,10 +1,16 @@
-# set 는 순서가 중요하지 않고 중복제거만 중요해요
-a = {'한국', '중국', '일본'}
-a.add('베트남')
-a.add('중국') # 이미 있으니 효과 없음
-a.remove('일본') # 일본 빼라
-a.update({'홍콩', '한국', '태국'}) # 한꺼번에 추가. 중복 제거.
-
-# {'베트남', '홍콩', '중국', '한국', '태국'}
-# set는 순서가 중요하지 않아요
-print(a)
+a = ["Seoul", "Kyeonggi", "Incheon", "Daejun", "Daegu", "Pusan"] 
+str = "S"
+ 
+"""
+   i      a
+"Seoul"  ["Seoul", "Kyeonggi", "Incheon", "Daejun", "Daegu", "Pusan"]
+"""
+for i in a:
+    """
+          "S" +  "Seoul"[1] = "Se"
+          "Se" + "Kyeonggi"[1] = "Sey"
+          "Sey" + "Incheon"[1] = "Seyn" ...
+    """
+    str = str + i[1]
+ 
+print(str)
