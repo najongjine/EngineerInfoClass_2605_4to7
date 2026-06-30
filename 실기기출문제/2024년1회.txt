@@ -1,0 +1,76 @@
+1.  다음 Java 코드에서 알맞는 출력 값을 작성하시오.
+
+package dummy;
+
+class Connection {
+	/* static 공간은 Heap 영역 어딘가에 할당된 시작주소를 평생 가지고 있는다
+	 * 모든 영역에서 그 공간 참조 가능하게 됬다 */
+    private static Connection _inst = null;
+    private int count = 0;
+    
+    static public Connection get() {
+        if(_inst == null) {
+        	/* 메모리 공간 어딘가에 공간 만들고, 필요한 데이터랑 함수 셋팅하고
+        	 * 그곳의 시작 수조를 넘겨준다 */
+            _inst = new Connection();
+            return _inst;
+        }
+        /* 전에 공간 만들어둔거 있으면 그거 계속 재활용해
+         * 그게 싱글톤 패턴이다 */
+        return _inst;
+    }
+    
+    public void count() {
+         count++; 
+    }
+    
+    public int getCount() {
+         return count; 
+    }
+}
+public class Test11 {	
+	public static void main(String[] args) {
+		/* 아무리 Connection.get()을 많이 호출해도
+		 * 하나 만들어둔 공간 계속 똑같이 배정 받게 된다 */
+		 Connection conn1 = Connection.get();
+		 /* H0라는(가정) 공간에 있는 count 변수값 증가시켜라*/
+	        conn1.count();
+	 
+	        Connection conn2 = Connection.get();
+	        /* H0라는(가정) 공간에 있는 count 변수값 증가시켜라*/
+	        conn2.count();
+	 
+	        Connection conn3 = Connection.get();
+	        /* H0라는(가정) 공간에 있는 count 변수값 증가시켜라*/
+	        conn3.count();
+	        /* H0라는(가정) 공간에 있는 count 변수값 증가시켜라*/
+	        conn1.count();
+	        System.out.print(conn1.getCount()); // 4
+	}
+}
+
+---------------------------------
+
+2. 다음 C언어 코드에서 알맞는 출력 값을 작성하시오.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int v1 = 0, v2 = 35, v3 = 29;
+    //  0 > 35 == false (0)  
+    //  0선택, c언어에서 0 NULL 이면 false.  결국 이 if문은 false로 치환이 됨
+    if (v1 > v2 ? v2 : v1) {
+        
+        v2 = v2 << 2;
+    }
+    else {
+        // 29를 2진수로 변환후 왼쪽으로 2칸 밀고 10진수로 바꾸니 116
+        // 29(11101) << 2  == 1110100 == 116
+        v3 = v3 << 2;
+    }
+    // 35 + 116
+    printf("%d", v2 + v3);
+
+}
+
