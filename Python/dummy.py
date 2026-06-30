@@ -1,16 +1,19 @@
-a = ["Seoul", "Kyeonggi", "Incheon", "Daejun", "Daegu", "Pusan"] 
-str = "S"
+# x=abdcabcabca   y="ab"
+def fnCalculation(x,y):
+    result = 0; # 1
+    # 0 ~ 10   
+    for i in range(len(x)): # 11    i=2
+     #      x[2:4] == dc
+     # temp=dc
+     temp = x[i:i+len(y)] 
+     #  dc == ab
+     if temp == y:
+       result += 1;
+    return result
  
-"""
-   i      a
-"Seoul"  ["Seoul", "Kyeonggi", "Incheon", "Daejun", "Daegu", "Pusan"]
-"""
-for i in a:
-    """
-          "S" +  "Seoul"[1] = "Se"
-          "Se" + "Kyeonggi"[1] = "Sey"
-          "Sey" + "Incheon"[1] = "Seyn" ...
-    """
-    str = str + i[1]
- 
-print(str)
+a = "abdcabcabca"
+p1 = "ab";
+p2 = "ca";
+#               3                    3
+out = f"ab{fnCalculation(a,p1)}ca{fnCalculation(a,p2)}"
+print(out) #ab3ca3

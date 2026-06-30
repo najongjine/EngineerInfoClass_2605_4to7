@@ -1,0 +1,104 @@
+1. 다음은  Java 코드에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+package dummy;
+
+public class Test11 {	
+	/* 배열들이 모두 new로 새로운 공간에 할당됬기 때문에 주소값은 절대 같을수 없다 */
+	public static void check(int[] a, int[] b) {
+        if (a==b) {
+            System.out.print("O");
+        }else{
+            System.out.print("N");
+        }
+    }
+	public static void main(String[] args) {
+		// heap 영역 새로운 주소 할둥후 a에 주소저장
+		int[] a = new int[]{1, 2, 3, 4};
+		// heap 영역 새로운 주소 할둥후 b에 주소저장
+        int[] b = new int[]{1, 2, 3, 4};
+		// heap 영역 새로운 주소 할둥후 c에 주소저장
+        int[] c = new int[]{1, 2, 3};
+        
+        check(a, b);
+        check(a, c); 
+        check(b, c); 
+	}
+}
+
+---------------------------------
+
+
+2. 다음 문제에서 설명하는 용어를 작성하시오.
+반정규화
+ - 데이터를 중복시켜 성능을 향상시키기 위한 기법
+ - 데이터를 중복 저장
+ - 테이블을 합치는 등으로 성능을 향상
+
+
+
+3.
+INSERT INTO VALUES
+SELECT FROM
+UPDATE SET
+
+
+
+4. 다음 릴레이션의 Cardinality와 Degree를 작성하시오.
+Cardinality
+ - 행, row, tuple 의 갯수
+Degree
+ - column, attribute, 열, 속성 의 갯수
+
+
+5. 다음은 프로토콜에 대한 내용이다. 아래 내용을 읽고 알맞는 답을 작성하시오.
+IPSec
+ - 기업에서 사설 인터넷망으로 사용할 수 있는 VPN을 구현하는데 사용되는 프로토콜이다.
+ - OSI 3계층
+ - 네트워크 계층
+
+
+
+
+6. 다음은 Python에 대한 문제이다. 아래 코드를 읽고 알맞는 출력 값을 작성하시오.
+# x=abdcabcabca   y="ab"
+def fnCalculation(x,y):
+    result = 0; # 1
+    # 0 ~ 10   
+    for i in range(len(x)): # 11    i=2
+     #      x[2:4] == dc
+     # temp=dc
+     temp = x[i:i+len(y)] 
+     #  dc == ab
+     if temp == y:
+       result += 1;
+    return result
+ 
+a = "abdcabcabca"
+p1 = "ab";
+p2 = "ca";
+#               3                    3
+out = f"ab{fnCalculation(a,p1)}ca{fnCalculation(a,p2)}"
+print(out) #ab3ca3
+
+------------------------
+
+
+7. 아래 설명하는 내용을 확인하여 알맞는 알고리즘을 작성하시오.
+AES
+ - 대칭키 알고리즘으로 1997년 NIST(미국 국립기술표준원)에서 DES를 대체하기 위해 생성되었다.
+ - A 는 America 
+
+
+
+
+8. 패킷 교환 방식 중에 연결형과 비연결형에 해당하는 방식을 작성하시오. 
+가상회선
+ - 연결형 교환 방식
+데이터그램
+ - 비연결형 교환 방식
+
+
+
+
+9. 아래 내용을 확인하고 보기에서 알맞는 답을 고르시오.
+순차적(sequential) 응집도
+ - 한 모듈 내부의 한 기능 요소에 의한 출력 자료가 다음 기능 원소의 입력 자료로서 제공되는 형태이다.
