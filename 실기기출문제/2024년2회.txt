@@ -195,3 +195,69 @@ int main() {
 
     }
  }
+
+
+
+
+
+ 18. 다음은 C언어에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력 값을 작성하시오.
+ #include <stdio.h>
+/* 자료 결합도 원본 건드는거 아님. 여기서 일어나는일은 main에 있는 a,b에 아무 영향 안줌 */
+void swap(int a, int b) {
+    int t = a;
+    a = b;
+    b = t;
+}
+int main() {
+    int a = 11;
+    int b = 19;
+    swap(a, b);
+
+    switch (a) {
+    case 1:
+        b += 1;
+    case 11:
+        b += 2; // 21
+    default:
+        b += 3; // 24
+        break;
+    }
+    //           11 - 24
+    printf("%d", a - b);
+}
+
+---------------------------------
+19. 다음은 C언어의 구조체에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력 값을 작성하시오.
+#include <stdio.h>
+struct node {
+    int n1;
+    struct node* n2;
+};
+int main() {
+    struct node a = { 10, NULL };
+    struct node b = { 20, NULL };
+    struct node c = { 30, NULL };
+
+    struct node* head = &a;
+    a.n2 = &b;
+    b.n2 = &c;
+
+    printf("%d\n", head->n2->n1);
+
+    return 0;
+}
+
+
+-----------------------------
+20. 다음은 Java에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력 값을 작성하시오.
+package dummy;
+
+public class Test11 {	
+	public static void main(String[] args) {
+        String str = "ITISTESTSTRING";
+        /* [I, IS, ES, S, RING] */
+        String[] result = str.split("T");
+        System.out.print(result[3]);
+	}
+}
+
