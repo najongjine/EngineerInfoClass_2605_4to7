@@ -1,16 +1,15 @@
-def func(lst):
-  #                3       0~2
-  for i in range(len(lst) //2):
-    """
-    파이썬은 이 괴상한 코드로 자리 바꿀수 있어요
-    lst[0], lst[-1] = lst[-1], lst[0]   첫번째 마지막 자리 바꾸기
-    lst[1], lst[-2] = lst[-2], lst[1]  1번째 요소랑 -2번째 요소 자리 바꾸기
-    lst[2], lst[-3] = lst[-3], lst[2]  2번째 요소랑 -3번째 요소 자리 바꾸기
-    """
-    lst[i], lst[-i-1] = lst[-i-1], lst[i]
+#        (100.0,200)
+def func(value):
+    if type(value) == type(100):
+        return 100
+    elif type(value) == type(""):
+        return len(value) 
+    else:
+        return 20
  
-# 파이선은 배열 뒷부터 접근 가능해요. -1, -2 이렇게
-lst = [1,2,3,4,5,6] 
-func(lst) # [6,5,4,3,2,1] 
-#S([6,4,2])=12   -  S([5,3,1])=9
-print(sum(lst[::2]) - sum(lst[1::2]))
+ 
+a = '100.0' # 문자열 길이는 5
+b = 100.0
+c = (100, 200)
+#          5     20         20
+print(func(a) + func(b) + func(c))

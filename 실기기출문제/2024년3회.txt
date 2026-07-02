@@ -67,3 +67,122 @@ int main() {
 8. 다음은 무결성제약조건에 대한 문제이다. 아래 표에서 어떠한 (       ) 무결성을 위반하였는지 작성하시오. 
 개체 무결성
  - 기본키(PK)는 절대 NULL을 가질수 없고 중복값도 가질수 없다
+
+
+
+
+
+10. 다음은 파이썬에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+#        (100.0,200)
+def func(value):
+    if type(value) == type(100):
+        return 100
+    elif type(value) == type(""):
+        return len(value) 
+    else:
+        return 20
+ 
+ 
+a = '100.0' # 문자열 길이는 5
+b = 100.0
+c = (100, 200)
+#          5     20         20
+print(func(a) + func(b) + func(c))
+
+
+-------------------------------------
+
+
+11. 다음은 Java 코드에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+public class Main{
+  public static void main(String[] args){
+    Base a =  new Derivate(); // upcasting
+    Derivate b = new Derivate();
+    
+    System.out.print(a.getX() + a.x + b.getX() + b.x);
+  }
+}
+ 
+class Base{
+    // a.x 는 요놈을 말하는거
+  int x = 3;
+  // upcasting 에선 override check
+  int getX(){
+     return x * 2; 
+  }
+}
+ 
+class Derivate extends Base{
+  int x = 7;
+  // a, b 이걸로 실행
+  int getX(){
+     return x * 3;
+  }
+}
+
+---------------------
+
+12. 다음은 C언어에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+#include <stdio.h>
+ 
+struct Node {
+ int value;
+ struct Node* next;
+};
+ 
+void func(struct Node* node){
+  while(node != NULL && node->next != NULL){
+    /* 연결 리스트 타고가면서 원소값 자리 바꾸기 */
+     int t = node->value;
+     node->value = node->next->value;
+     node->next->value = t;
+     node = node->next->next;
+  }
+}
+ 
+int main(){
+  struct Node n1 = {1, NULL};
+  struct Node n2 = {2, NULL};
+  struct Node n3 = {3, NULL};
+  
+  n1.next = &n3;
+  n3.next = &n2;
+ 
+  func(&n1);  
+ 
+  struct Node* current = &n1;
+ 
+ /* 연결 리스트 타고가면서 값 순차적으로 출력*/
+  while(current != NULL){
+    printf("%d", current->value);
+    current = current->next;
+ }
+ 
+ return 0;
+ 
+}
+
+------------------------------
+
+13. 다음은 테스트 커버리지에 대한 문제이다. 아래 내용에 알맞는 답을 보기에서 골라 작성하시오.
+구문(문장) 커버리지
+ -  최소한 한 번 실행했는지를 측정
+결정(분기) 커버리지
+ - 분기(조건문)의 각 분기를 최소한 한 번씩 실행
+ - true 결과, false 결과 한번씩 실행
+조건 커버리지
+ - 복합 조건 내의 각 개별 조건이 참과 거짓 테스트
+ - 헛점이 있다. 개별 변수는 t/f 로 테스트 하지만 전체결과를 결정 분기처럼 t/f 다 안나올수 있다.
+
+
+
+15. 다음은 데이터베이스에 관한 문제이다. 아래 내용을 읽고 알맞는 답을 보기에서 찾아 골라 작성하시오.
+외래키
+ - 다른 테이블, 릴레이션의 기본 키를 참조
+후보키
+ - 테이블에서 각 행을 유일하게 식별할 수 있는 최소한의 속성들의 집합
+대체키
+ - 후보 키 중에서 선정된 기본 키를 제외한 나머지 후보 키
+슈퍼키 (제일 꾸짐)
+ -  테이블에서 각 행을 유일하게 식별할 수 있는 속성들의 집합
+ - 속성을 최소 2개 이상 묶어야 중복발생 안되고 구분 가능
