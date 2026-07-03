@@ -182,3 +182,26 @@ Adapter
     재사용
     기존 클래스 수정 없이 사용
     Wrapper
+
+
+
+
+20. 다음은 Java 코드에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+package dummy;
+
+public class Test11 {	
+	static int calc(int value) { // 두번째부턴 overloading 일어나서 이것만 해요
+	    if (value <= 1) return value;
+	    return calc(value - 1) + calc(value - 2);
+	  }
+	 
+  static int calc(String str) { // 처음엔 여기로 오지만
+    int value = Integer.valueOf(str);
+    if (value <= 1) return value;
+    return calc(value - 1) + calc(value - 3);
+  }
+	public static void main(String[] args) {
+		System.out.println(calc("5"));
+	}
+}
+

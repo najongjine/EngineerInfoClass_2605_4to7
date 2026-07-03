@@ -72,7 +72,7 @@ p195
 if (A and B):    # 조건문 (결정 포인트)
     print("실행!") # 구문
 
-1. 구문 커버리지 (Statement Coverage)
+1. 구문 커버리지 (Statement Coverage,문장 커버리지)
     목표: 코드 내부의 print("실행!")을 최소 1번은 실행시켜야 함.
 
     논리: if문이 True가 되는 케이스 딱 1개만 있으면 됨.
