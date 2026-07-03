@@ -1,0 +1,184 @@
+1. 다음은 네트워크 보완에 관련된 문제이다. 괄호안에 알맞는 용어를 작성하시오
+세션 하이재킹
+ -  '세션을 가로채다.' 라는 의미로 다른 사람의 세션 상태를 훔치거나 도용하여 액세스하는 해킹 기법이다. 
+
+
+2. 다음은 제약조건과 관련된 문제이다. 괄호안에 알맞는 용어를 보기에 골라 작성하시오.
+개체
+ - 기본키
+ - 튜플
+참조
+ - 외래키
+도메인
+ - 속성
+ - 제약조건
+ - 데이터 타입
+
+
+
+3. 아래의 내용에서 설명 글의 괄호안의 용어를 영문 약자로 작성하시오.
+CRC
+ - 다항식
+ - 체크섬
+ - 오류검출
+
+
+
+4. 다음은 악성코드 관련된 문제이다. 아래 내용을 확인하여 보기에 골라 작성하시오.
+스캐어 웨어
+ - ‘겁을 주다’라는 영어 단어에서 유래한 것으로 공포를 이용하여 피해자를 속여 대가를 지불 하거나 특정 행동을 유도하는 랜섬웨어이다.
+
+
+
+
+5. 다음은  Java 코드에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+public class Main {
+ 
+  public static void main(String[] args) {
+ 
+    int a=5,b=0;
+ 
+    try{
+      System.out.print(a/b);
+    }catch(ArithmeticException e){ // 산술하다 에러
+      System.out.print("출력1");
+    }catch(ArrayIndexOutOfBoundsException e) { // 배열첨자 넘는 에러
+      System.out.print("출력2");
+    }catch(NumberFormatException e) { // "안녕" 이런걸 숫자로 강제로 변활할때 나느 에러
+      System.out.print("출력3");
+    }catch(Exception e){ // 위에꺼 다 해당 안되면 어기로 빠짐
+      System.out.print("출력4");
+    }finally{ // 무조건 마지막에 실행됨
+      System.out.print("출력5");
+    }
+  }
+}
+
+
+-------------------
+
+6. 아래 내용은 ARP/RARP에 대한 설명이다. 각 설명에 해당하는 것을 작성하시오.
+ARP 
+ - IP 주소를 MAC
+RARP
+ - MAC 주소를 IP
+
+
+
+
+8. 아래는 데이터베이스에 관련된 설명이다. 알맞는 용어를 보기에서 골라 괄호를 작성하시오.
+domain   
+ - 특정 속성에 대해 입력될 수 있는 값의 유형이나 범위를 의미하고 무결성을 보장하는 기준
+foreign
+ - 한 릴레이션의 속상이 다른 릴레이션의 기본 키를 참조할 때, 참조하는 속성을 의미
+degree
+ - 속성의 개수
+cardinality   
+ - 튜플의 개수
+
+
+
+
+
+10. 다음은 C언어에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+#include <stdio.h>
+char Data[5] = { 'B', 'A', 'D', 'E' };
+char c;
+int main() {
+    int i, temp, temp2;
+
+    c = 'C';
+    printf("%d\n", Data[3] - Data[1]); // 4
+
+    for (i = 0; i < 5; ++i) {
+        if (Data[i] > c)
+            break;
+    }
+
+    temp = Data[i];
+    Data[i] = c;
+    i++;
+
+    for (; i < 5; ++i) {
+        temp2 = Data[i];
+        Data[i] = temp;
+        temp = temp2;
+    }
+
+    for (i = 0; i < 5; i++) {
+       printf("%c", Data[i]);
+    }
+}
+-----------------------------
+
+12. 다음은 결합도와 관련된 내용이다. 보기에 알맞는 답을 골라 작성하시오.
+내용 결합도
+ - 다른 모듈 내부에 있는 변수나 기능을 다른 모듈에서 사용하는 경우
+ - 한 모듈이 다른 모듈의 내부를 직접 건드림
+스탬프 결합도
+ - 배열이나 오브젝트, 자료구조 등이 전달되는 경우
+ - A모듈에서 B모듈로 서로 소통할때 parameter 로 줘라.
+  데이터를 줄때 주소로 줘라. (java, python에선 숫자,boolean,문자열 빼고는 전부다 stamp 결합도)
+공통 결합도
+ - 모듈 밖에 선언되어 있는 전역 변수를 참조하고 전역 변수를 갱신
+
+
+
+
+
+13. 다음은 Java 코드에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+ public class Main {
+    public static void main(String[] args) {
+        new Child();
+        System.out.println(Parent.total);
+    }
+}
+class Parent {
+    static int total = 0; // 18
+    int v = 1;
+ 
+    public Parent() {
+        // total = 0 + 2
+        total += (++v);
+        // p.show로 가긴 함...
+        show();    
+    }
+    // override 체크 함
+    public void show() {
+        total += total;
+    }
+}
+class Child extends Parent {
+    int v = 10; // 13
+    // 여기먼저 진입, 그다음 부모생성자 체크
+    public Child() {
+        v += 2;
+        // total = 6 + 12                v++
+        total += v++;
+        System.out.println(total);
+        show();
+    }
+   
+    @Override // 이걸로 해야함
+    public void show() {
+        // total +=  36
+        total += total * 2;
+        System.out.println(total);
+    }
+    
+}
+
+------------------------------------
+
+14. 아래는 디자인 패턴에 대한 설명이다. 알맞는 답을 보기에 골라 작성하시오. 
+Adapter 
+ - 서로 다른 인터페이스를 가진 클래스들을 연결해 사용 가능하게 한다.
+ - 기존 클래스(Adaptee)를 원하는 인터페이스(Target)에 맞게 변환하는 어댑터(Adapter)를 만든다.
+ - 기존 클래스를 감싸서(wrapper) 인터페이스를 변환해주는 역할을 한다. 
+ - 이미 만들어진 코드의 모양이 지금 내가 쓰려는 모양과 안 맞을 때, 중간에 어댑터를 끼워서 맞춰 쓰는 패턴
+ - 호환되지 않는 인터페이스를 변환하여 함께 사용할 수 있게 하는 패턴
+ - 호환되지 않는 인터페이스
+    변환
+    재사용
+    기존 클래스 수정 없이 사용
+    Wrapper
