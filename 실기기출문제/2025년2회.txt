@@ -213,3 +213,40 @@ print(f"dst:",dst)
             {2,4,6,99} & {2,7,6} -> len({2,6})
 """
 print(len(s & set(dst.values())))
+
+
+
+---------------------------
+
+18. 다음은 C언어의 문제이다. 아래 코드를 보고 알맞는 출력값을 작성하시오. 
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    char c;
+    struct node* p;
+};
+struct node* func(char* s) {
+    struct node* h = NULL, * n;
+
+    while (*s) {
+        // heap 영역에 새로운 공간 만들고 거기 주소를 n에 저장
+        n = malloc(sizeof(struct node));
+        n->c = *s++; // 후위연산. 뭐가 있건간에 다 하고 s++ 시켜야 한다
+        n->p = h;
+        h = n;
+    }
+    return h;
+}
+int main() {
+    struct node* n = func("BEST");
+    printf("%c \n", n->c);
+
+    while (n) {
+        putchar(n->c);
+        struct node* t = n;
+        n = n->p;
+        free(t);
+    }
+    return 0;
+}
