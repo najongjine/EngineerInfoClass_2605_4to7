@@ -118,8 +118,98 @@ public class Test11 {
 	}
 }
 
+------------------
 
-
-
-
+14. 다음은 C언어의 문제이다. 아래 코드를 보고 알맞는 출력값을 작성하시오. 
+#include <stdio.h>
  
+struct dat {
+    int x;
+    int y;
+};
+ 
+int main() {
+    // 시각화 잘 해놓고
+    struct dat a[] = {{1, 2}, {3, 4}, {5, 6}};
+    struct dat* ptr = a;
+    struct dat** pptr = &ptr;
+ 
+    // 여기만 해석할줄 알면 됨
+    (*pptr)[1] = (*pptr)[2];
+    printf("%d 그리고 %d", a[1].x, a[1].y);
+ 
+    return 0;
+}
+
+
+-----------------------
+
+15. 다음은 Java언어의 문제이다. 아래 코드를 보고 알맞는 출력값을 작성하시오. 
+public class Main{
+    public static class BO {
+        public int v;
+        public BO(int v) {
+            this.v = v;
+        }
+    }
+    public static void main(String[] args) {
+        BO a = new BO(1);
+        BO b = new BO(2);
+        BO c = new BO(3);
+        BO[] arr = {a, b, c};
+        BO t = arr[0];
+        arr[0] = arr[2];
+        arr[2] = t;
+        arr[1].v = arr[0].v;
+        System.out.println(a.v + "a" + b.v + "b" + c.v);
+    }
+}
+ 
+ -----------------------
+
+16. 다음은 C언어의 문제이다. 아래 코드를 보고 알맞는 출력값을 작성하시오. 
+#include <stdio.h>
+#include <stdlib.h>
+ 
+struct node {
+    int p;
+    struct node* n;
+};
+ 
+int main() {
+    // 시각화 잘 해놓으면 어렵지 않아요
+    struct node a = {1, NULL};
+    struct node b = {2, NULL};
+    struct node c = {3, NULL};
+ 
+    a.n = &b; b.n = &c; c.n = NULL;
+    c.n = &a; a.n = &b; b.n = NULL;
+    struct node* head = &c;
+    printf("%d %d %d", head->p, head->n->p, head->n->n->p);
+    return 0;
+}
+
+--------------------
+
+# [99,2,3]
+lst = [1,2,3]
+"""
+       {1:2
+       2:4}  -> 2:7
+       3:6}
+"""
+dst = {i : i* 2 for i in lst}
+
+"""
+dictionary 에서 value 들만 쫙 뽑고, 그걸 set 로 만들어라
+{2,4,6} -> {2,4,6,99}
+"""
+s = set(dst.values())
+lst[0] = 99 
+dst[2]=7
+s.add(99)
+print(f"dst:",dst)
+"""
+            {2,4,6,99} & {2,7,6} -> len({2,6})
+"""
+print(len(s & set(dst.values())))

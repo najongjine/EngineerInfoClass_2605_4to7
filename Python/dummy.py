@@ -1,15 +1,22 @@
-#        (100.0,200)
-def func(value):
-    if type(value) == type(100):
-        return 100
-    elif type(value) == type(""):
-        return len(value) 
-    else:
-        return 20
- 
- 
-a = '100.0' # 문자열 길이는 5
-b = 100.0
-c = (100, 200)
-#          5     20         20
-print(func(a) + func(b) + func(c))
+# [99,2,3]
+lst = [1,2,3]
+"""
+       {1:2
+       2:4}  -> 2:7
+       3:6}
+"""
+dst = {i : i* 2 for i in lst}
+
+"""
+dictionary 에서 value 들만 쫙 뽑고, 그걸 set 로 만들어라
+{2,4,6} -> {2,4,6,99}
+"""
+s = set(dst.values())
+lst[0] = 99 
+dst[2]=7
+s.add(99)
+print(f"dst:",dst)
+"""
+            {2,4,6,99} & {2,7,6} -> len({2,6})
+"""
+print(len(s & set(dst.values())))
