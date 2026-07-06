@@ -61,7 +61,7 @@ p69
 * UML : 무식하게 많은 다이어그램중 몇개 쓸만한거 선정한거.
 
 p72
-* stereo typem, gillamet 기호
+* stereo type, gillamet 기호
 - 다이어그렘 그릴때 << 의미 >> 요런걸 사용 하더라.
 
 p75
