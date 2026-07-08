@@ -1,38 +1,16 @@
-def f(a):
-    """
-    [[1], [2], [3], [4]]
-    """
-    m = [[x] for x in a]
-    """
-    주소 공유가 아니라, 내용물 자체를 복사해서,
-    새로운 배열 만들기
-    """
-    b = m[:]
-    #   i=0~2            3
-    for i in range(len(b) - 1):
-        """
-        b[0+1]+=b[0]
-        b[1]= b[1] + b[0]
-        b[1]= [2] + [1]
-        b[1] = [2,1]
-        [[1], [2,1], [3], [4]]
+#i = input()
+i="HumanDev"
+x = [] 
+ 
+"""
+  "HumanDev"   ["HumanDev"]
+"""
+for word in i.split():
+    # x=["HumanDev"]
+    x.append(word)
 
-        b[1+1]+=b[1]
-        b[2]= b[2] + b[1]
-        b[2] = [3] + [2,1]
-        b[2] = [3,2,1]
-        [[1], [2,1], [3,2,1], [4]]
-        ...
-        [[1], [2,1], [3,2,1], [4,3,2,1]]
-        """
-        b[i+1] += b[i]
-    """
-    list comprehension
-    [1] -> x 에 가고, len([1]) -> 1
-    [2,1] -> x 에 가고, len([2,1]) -> 2
-    ...3
-    ...4
-    """
-    return sum(len(x) for x in m)
-#f([1, 2, 3, 4])
-print(f([1, 2, 3, 4]))
+# y="HumanDev"
+y = ''.join(x)
+z = ''.join(c for c in y[::-1] if c not in 'ong')
+ 
+print(z)
