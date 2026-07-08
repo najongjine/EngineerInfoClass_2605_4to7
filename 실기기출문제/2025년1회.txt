@@ -110,6 +110,40 @@ int main() {
     }
 }
 -----------------------------
+11. 다음은 C언어에 대한 문제이다. 아래 코드를 확인하여 알맞는 출력값을 작성하시오.
+#include <stdio.h>
+#include <stdlib.h>
+
+void set(int** arr, int* data, int rows, int cols) {
+    for (int i = 0; i < rows * cols; ++i) {
+        arr[((i + 1) / rows) % rows][(i + 1) % cols] = data[i];
+    }
+}
+
+int main() {
+    int rows = 3, cols = 3, sum = 0;
+    int data[] = { 5, 2, 7, 4, 1, 8, 3, 6, 9 };
+    int** arr;
+    /* 2차원 배열을 동적으로 만드는 코드 */
+    arr = (int**)malloc(sizeof(int*) * rows); // row
+    for (int i = 0; i < cols; i++) {
+        arr[i] = (int*)malloc(sizeof(int) * cols); // col
+    }
+
+    set(arr, data, rows, cols);
+
+    for (int i = 0; i < rows * cols; i++) {
+        sum += arr[i / rows][i % cols] * (i % 2 == 0 ? 1 : -1);
+    }
+
+    for (int i = 0; i < rows; i++) {
+        free(arr[i]);
+    }
+    free(arr);
+
+    printf("%d", sum);
+}
+-------------------------------
 
 12. 다음은 결합도와 관련된 내용이다. 보기에 알맞는 답을 골라 작성하시오.
 내용 결합도
